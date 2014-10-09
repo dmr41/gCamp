@@ -2,20 +2,39 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+h2 {}
 .navbar {background-color: #E99600;
-         color: black;}
+         color: black;
+         font-family: "Comic sans MS";}
 
-.jumbotron {background-color: white;}
+.jumbotron {margin-left: 150px;
+            margin-right: 440px;
+            margin-top: 150px;
+            }
+
+/*.jumbotron.container {background-color: gray;
+                      border-style: solid;}*/
+
+.jumbotron {background-color: #EDEDED;
+            border-style: solid;
+            border-color: black;
+            font-family: "Comic sans MS";}
 
 .panel-heading {background-color: #9FB9F2;
-                border-color: black;}
+                border-color: black;
+                font-family: "Comic sans MS";}
 
 #lowerhead.panel-heading {background-color: #EDEDED;
 border-color:black;}
 
-.top-buffer { margin-top:30px; }
+.panel-body {font-family: "Comic sans MS";}
+
+.top-buffer {margin-top:30px;}
+
 
 .panel {border-color: black;}
+
+/*#lowercontainer.container {background-color: purple;}*/
 
 /* * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
