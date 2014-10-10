@@ -2,14 +2,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-h2 {}
+
 .navbar {background-color: #E99600;
          color: black;
          font-family: "Comic sans MS";}
 
-.jumbotron {margin-left:  3%;
-            margin-right: 3%;
-            margin-top: 5%;
+.jumbotron {margin-left:  1%;
+            margin-right: 1%;
+            padding: 0%;
             }
 
 /*.jumbotron.container {background-color: gray;
@@ -27,7 +27,8 @@ h2 {}
 #lowerhead.panel-heading {background-color: #EDEDED;
 border-color:black;}
 
-.panel-body {font-family: "Comic sans MS";}
+.panel-body {font-family: "Comic sans MS";
+             height: 100px;}
 
 .top-buffer {margin-top: 30px;}
 
@@ -37,16 +38,19 @@ border-color:black;}
   height: 100%;
   position: relative;
 }
+.row{position:relative;}
 
 .bkgrd {background-color: white;
         margin-left: auto;
         margin-right: auto;
+        padding: 5%;
         width: 90%;
         height: 100%;
         position: relative;}
 
 
-.panel {border-color: black;}
+.panel {border-color: black;
+        position: relative;}
 
 /*#lowercontainer.container {background-color: purple;}*/
 
