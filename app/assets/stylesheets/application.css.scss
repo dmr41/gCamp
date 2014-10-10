@@ -7,9 +7,9 @@ h2 {}
          color: black;
          font-family: "Comic sans MS";}
 
-.jumbotron {margin-left: 150px;
-            margin-right: 440px;
-            margin-top: 150px;
+.jumbotron {margin-left:  3%;
+            margin-right: 3%;
+            margin-top: 5%;
             }
 
 /*.jumbotron.container {background-color: gray;
@@ -29,7 +29,21 @@ border-color:black;}
 
 .panel-body {font-family: "Comic sans MS";}
 
-.top-buffer {margin-top:30px;}
+.top-buffer {margin-top: 30px;}
+
+.midpanel{margin-left: auto;
+  margin-right: auto;
+  width: 99%;
+  height: 100%;
+  position: relative;
+}
+
+.bkgrd {background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 100%;
+        position: relative;}
 
 
 .panel {border-color: black;}
