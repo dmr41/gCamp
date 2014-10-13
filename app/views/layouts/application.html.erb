@@ -11,21 +11,6 @@
 
     <title>Jumbotron Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <!--<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">-->
-
-    <!-- Custom styles for this template -->
-    <!--<link href="jumbotron.css" rel="stylesheet">-->
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 <!--  asfasdf -->
   <body style="background-color: #EDEDED">
@@ -35,107 +20,17 @@
       <div class="navbar navbar-fixed-top">
     <!--<div class="navbar navbar-fixed-top" role="navigation">-->
         <div class="container">
-
-          <h3>gCamp</h3>
+<h3><%= link_to("gCamp", root_path) %> </h3>
           <!--<a class="navbar-brand ">gCamp</a>-->
         </div>
       </div>
+<%= yield %>
+<hr />
+<footer>
+<div><%= link_to("About", abouty_path) %> | <%= link_to("Terms", termy_path) %> </div>
+</footer>
+</body>
 
-
-
-  <!-- Main 0 for a primary marketing message or call to action -->
-  <div class="bkgrd">
-    <div class="jumbotron top-buffer">
-      <div class="container">
-       <!--<div class="row top-buffer"
-        <div class="span2"><div class="col-md-4">-->
-              <h1>gCamp</h1>
-              <p></p>
-              <p style="color: gray">This is a gCamp paragraph!</p>
-            </div>
-          </div>
-      <!--<div class="container"> -->
-    <div id="lowercontainer"class="container-fluid">
-      <!-- Example row of columns -->
-      <div class="row top-buffer">
-        <div class="span4">
-          <div class="col-md-4">
-              <img src="http://www.freeimageslive.com/galleries/sports/moods%20emotions/preview/block_of_flatsP1010401.jpg" class="img-responsive">
-              </img>
-        </div>
-      </div>
-        <div class="span4">
-          <div class="col-md-4">
-              <img src="http://www.freeimageslive.com/galleries/sports/moods%20emotions/preview/misty_mountain_cabinP1011623.jpg" class="img-responsive">
-              </img>
-        </div>
-      </div>
-      <div class="span4"><div class="col-md-4">
-        <img src="http://www.freeimageslive.com/galleries/sports/moods%20emotions/preview/remarkables_mountains_sunsetP8145709.jpg" class="img-responsive">
-        </img>
-      </div>
-    </div>
-  </div>
-      <div class="row top-buffer">
-        <div class="span4"><div class="col-md-4">
-          <div class="panel">
-            <div class="panel-heading">
-              <h3 class="panel-title">Tasks</h3>
-            </div>
-            <div class="panel-body">
-                <p>Grouped by projects and lists. Just the way you like'em.
-                </p>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="span4"><div class="col-md-4">
-          <div class="panel">
-            <div class="panel-heading">
-              <h3 class="panel-title">Documents</h3>
-            </div>
-            <div class="panel-body">
-              <ul>
-                  <li>Upload</li>
-                  <li>Comment</li>
-                  <li>Revise</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="span4"><div class="col-md-4">
-        <div class="panel">
-          <div class="panel-heading">
-            <h3 class="panel-title">Comments</h3>
-          </div>
-          <div class="panel-body">
-            <ul>
-                <li>Comment on tasks and documents</li>
-                <li>Get email notifications</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-      <hr>
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>-->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
-  </div>
-</div>
-</div>
-  </body>
 </html>
 
 <%= stylesheet_link_tag 'application' %>
-
-<%= yield %>

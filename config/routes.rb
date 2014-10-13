@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   root "pages#index"
-  
+
+  get "/about" => "pages#info_pg", as: :abouty
+  get "/terms" => "pages#cond_pg", as: :termy
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
