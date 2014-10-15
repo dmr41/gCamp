@@ -1,0 +1,14 @@
+<div class="bkgrd">
+  <div class="termbotron top-buffer">
+    <div class="container-fluid">
+      <h2><strong>Frequently asked questions</strong></h2>
+      <br></br>
+      <% @questions.each do |quest| %>
+
+          <h4><%= quest.question %></h4>
+            <p><div><%= quest.answer %></div></p>
+            <br></br>
+      <% end%>
+
+    </div>
+  </div>

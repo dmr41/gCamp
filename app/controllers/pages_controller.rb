@@ -2,7 +2,6 @@ class PagesController < ApplicationController
 
   def index
 
-
     quote1 = Quote.new
     quote1.phrase = "\"When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.\""
     quote1.author = "Confucius"
