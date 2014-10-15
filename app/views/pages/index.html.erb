@@ -73,11 +73,12 @@
         </div>
       </div>
     </div>
-      <%  @people_quotes.each do |name, quote| %>
+
+      <% @people_quotes.each do |quote| %>
         <div class="quotes"
-          <p><strong><%= quote %></strong>
+          <p><strong><%= quote.phrase %></strong>
             <br></br>
-            <div class="text-muted">~<%= name %></div>
+            <div class="text-muted">~<%= quote.author %></div>
             </p>
             <br></br>
         </div>
