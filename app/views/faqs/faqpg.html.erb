@@ -6,7 +6,7 @@
       <p class="container-fluid">
         <ul>
             <% @questions.each do |quest| %>
-              <li><%=link_to("#{quest.question}", anchor: "needs_a_variable")%>
+              <li><%=link_to("#{quest.question}", anchor: "#{quest.slug}")%>
               </li>
             <% end%>
       </p>
@@ -14,7 +14,7 @@
     <br></br>
             <% @questions.each do |quest| %>
               <h4><%= quest.question %></h4>
-              <a name="needs_a_variable"></a><%= quest.answer %>
+              <a name="<%=quest.slug %>"></a><%= quest.answer %>
                 <br></br>
             <% end%>
 
