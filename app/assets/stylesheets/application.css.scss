@@ -5,7 +5,7 @@
 
 .navbar {background-color: #E99600;
          color: black;
-         font-family: "Comic sans MS";}
+         font-family: "Arial";}
 
 .main_text {font-size: 150%}
 
@@ -13,25 +13,23 @@
             margin-right: 1%;
             padding: 0%;
             }
-.termbotron {font-family: "Comic sans MS";}
-/*.jumbotron.container {background-color: gray;
-                      border-style: solid;}*/
+.termbotron {font-family: "Arial";}
 
 .jumbotron {background-color: #EDEDED;
             border-style: solid;
             border-color: black;
             border-radius: 5px;
-            font-family: "Comic sans MS";
+            font-family: "Arial";
             }
 
 .panel-heading {background-color: #9FB9F2;
                 border-color: black;
-                font-family: "Comic sans MS";}
+                font-family: "Arial";}
 
 #lowerhead.panel-heading {background-color: #EDEDED;
 border-color:black;}
 
-.panel-body {font-family: "Comic sans MS";
+.panel-body {font-family: "Arial";
              height: 100px;}
 
 .top-buffer {margin-top: 30px;}
@@ -44,7 +42,7 @@ border-color:black;}
 }
 .row{position:relative;}
 
-.bkgrd {background-color: white;
+.outercontainer {background-color: white;
         margin-left: auto;
         margin-right: auto;
         padding: 5%;
@@ -57,14 +55,14 @@ border-color:black;}
         position: relative;}
 
 .quotes {padding-left: 2%;
-         font-family: "Comic sans MS";}
+         font-family: "Arial";}
 
 body {background-color: #EDEDED;}
 div h3 {padding-left: 11%}
 footer div {margin-left: 2%;}
 
 hr {border: 1px solid #ABABAB;}
-/*#lowercontainer.container {background-color: purple;}*/
+
 
 /* * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

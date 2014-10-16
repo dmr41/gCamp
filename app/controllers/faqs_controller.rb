@@ -1,6 +1,6 @@
 class FaqsController < ApplicationController
 
-  def faq_pg
+  def faqpg
 
     query1 = Faq.new
     query1.question = "Should we explore the mysteries of life?"

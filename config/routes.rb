@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "/about" => "pages#info_pg", as: :abouty
   get "/terms" => "pages#cond_pg", as: :termy
-  get "/faq" => "faqs#faq_pg", as: :faqy
+  get "/faq" => "faqs#faqpg", as: :faqy
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
