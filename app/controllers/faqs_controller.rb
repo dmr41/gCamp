@@ -6,12 +6,25 @@ class FaqsController < ApplicationController
     query1.question = "Should we explore the mysteries of life?"
     query1.answer = "The most beautiful thing we can experience is the mysterious.
     It is the source of all true art and all science. He to whom this emotion is a stranger,
+    who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed. - Einstein
+    The most beautiful thing we can experience is the mysterious.
+    It is the source of all true art and all science. He to whom this emotion is a stranger,
+    who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed. - Einstein
+    The most beautiful thing we can experience is the mysterious.
+    It is the source of all true art and all science. He to whom this emotion is a stranger,
     who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed. - Einstein"
     query1.slug = "slug1"
 
     query2 = Faq.new
     query2.question = "Is the sky blue?"
-    query2.answer = "That depends on the time of day and weather.  But for the most part the sky is blue on Earth."
+    query2.answer = "That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth.
+    That depends on the time of day and weather.  But for the most part the sky is blue on Earth."
     query2.slug = "slug2"
 
     query3 = Faq.new
