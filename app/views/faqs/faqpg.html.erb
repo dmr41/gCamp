@@ -13,7 +13,7 @@
         </ul>
     <br></br>
             <% @questions.each do |quest| %>
-              <a name="<%=quest.slug %>"></a><h4><%= quest.question %></h4>
+             <a name="<%=quest.slug %>"></a><h4><%= quest.question %></h4>
               <%= quest.answer %>
                 <br></br>
             <% end%>
