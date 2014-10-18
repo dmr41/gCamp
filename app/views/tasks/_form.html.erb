@@ -10,13 +10,17 @@
       </ul>
     </div>
   <% end %>
-
+<form class="form-horizontal" role="form">
+  <div class="form-group">
       <div class="field">
-        <%= f.label :description%><br>
-        <%= f.text_field :description%>
-      </div>
+        <%= f.label :description, class: "col-sm-2"%>
+        <%= f.text_field :description, class: "col-sm-5"%>
+  </form>
+    <br></br>
       <div class="actions">
-        <%= f.submit class: 'btn btn-primary'%>
+        <%= f.submit class: 'btn btn-primary' %>
       </div>
     </div>
+    </div>
+  </form>
 <% end %>
