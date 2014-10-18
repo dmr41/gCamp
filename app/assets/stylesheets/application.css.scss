@@ -1,7 +1,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+h3 a {text-decoration: none; color:green;}
 .page-header{
               border-bottom: 2px solid pink;
             }
@@ -66,7 +66,7 @@ footer div {margin-left: 2%;}
 
 hr {border: 1px solid #ABABAB;}
 
-a { text-decoration: none; color:#000; }
+a { text-decoration: none; color:purple; }
 /* * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
