@@ -1,23 +1,23 @@
 <div class="outercontainer">
     <div class="container">
+      <div class="page-header">
       <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-12">
             <h1>Listing tasks
-              <button type="button" class="btn btn-info pull-right">
-              <%= link_to 'New Task', new_task_path%>
-              </button>
+              <button type="button" class="btn btn-info pull-right"><%= link_to 'New Task', new_task_path%></button>
             </h1>
         </div>
+      </div>
+     </div>
       <div class="row">
-        <div class="col-md-11">
-            <table class="table table-bordered table-striped">
+        <div class="col-md-12">
+            <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Description</th>
-                  <th colspan="3"></th>
+                  <th class="col-md-6">Description</th>
+                  <th class="col-md-3" colspan="3"></th>
                 </tr>
               </thead>
-
 
               <tbody>
                 <% @tasks.each do |task| %>
@@ -33,4 +33,3 @@
         </div>
       </div>
     </div>
-  </div>

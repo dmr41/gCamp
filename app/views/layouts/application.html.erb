@@ -1,16 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application' %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
     <title>gCamp</title>
-
   </head>
 <!--  asfasdf -->
   <body>
@@ -29,8 +26,8 @@
 <div><%= link_to_unless_current("About", abouty_path) %> | <%= link_to_unless_current("Terms", termy_path) %>
   | <%= link_to_unless_current("FAQ", faqy_path) %> | <%= link_to_unless_current("Tasks", tasks_path) %></div>
 </footer>
+
+<%= javascript_include_tag 'application' %>
+
 </body>
-
 </html>
-
-<%= stylesheet_link_tag 'application' %>

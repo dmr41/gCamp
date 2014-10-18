@@ -2,6 +2,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.page-header{
+              border-bottom: 2px solid pink;
+            }
 
 .navbar {background-color: #000000;
          color: black;
