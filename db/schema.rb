@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141016205221) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tasks", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
