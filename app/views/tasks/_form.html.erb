@@ -16,9 +16,16 @@
         <%= f.label :description, class: "col-sm-2"%>
         <%= f.text_field :description, class: "col-sm-5"%>
     <br></br>
+    <div>
+        <%= f.check_box :complete, class: "col-sm-2" %>
+        <%= f.label :complete, class: "col-sm-2"%>
+      </div>
+      <br></br>
+      <div>
       <div class="actions">
         <%= f.submit class: 'btn btn-primary' %>
       </div>
+    </div>
     </div>
     </div>
 <% end %>

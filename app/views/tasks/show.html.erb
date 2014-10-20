@@ -4,7 +4,9 @@
 
   <h1><strong>Description: </strong></h1>
   <%= @task.description %>
-</p>
+  <h1><strong>Completed: </strong></h1>
+  <%=@task.complete %>
+  </p>
 <br></br>
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
