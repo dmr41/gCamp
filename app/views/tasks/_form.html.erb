@@ -10,18 +10,19 @@
       </ul>
     </div>
   <% end %>
-<form class="form-horizontal" role="form">
+<!-- <form class="form-horizontal" role="form"> -->
   <div class="form-group">
       <div class="field">
         <%= f.label :description, class: "col-sm-2"%>
         <%= f.text_field :description, class: "col-sm-5"%>
     <br></br>
-    <div>
+    <div class="offset">
       <% unless current_page?(new_task_path) %>
-        <%= f.check_box :complete, class: "col-sm-2" %>
-        <%= f.label :complete, class: "col-sm-2"%>
+        <%= f.check_box :complete%>
+        <%= f.label :complete%>
       <%end%>
       </div>
+      <br></br>
       <%= f.date_field :date%>
       <%= f.label :date%>
       <br></br>
@@ -33,4 +34,4 @@
     </div>
     </div>
 <% end %>
-</form>
+<!-- </form> -->
