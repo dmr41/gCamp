@@ -13,7 +13,9 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="col-md-6">Description</th>
+                  <th class="col-md-3">Description</th>
+                  <th class="col-md-2" colspan="1">Edit complete?</th>
+                  <th class="col-md-2"colspan="1">Date</th>
                   <th class="col-md-3" colspan="3"></th>
                 </tr>
               </thead>
@@ -22,6 +24,8 @@
                 <% @tasks.each do |task| %>
                 <tr>
                   <td><%= task.description %></td>
+                  <td><%= task.complete.to_s.capitalize %> </td>
+                  <td><%= task.date%> </td>
                   <td><button type="button" class="btn btn-success"><%= link_to 'Show', task %></button></td>
                   <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_task_path(task) %></button></td>
                   <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
