@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-md-12">
             <h1>Listing tasks
-              <button type="button" class="btn btn-info pull-right"><%= link_to 'New Task', new_task_path%></button>
+              <button type="button" class="btn btn-info pull-right"><%= link_to 'New Task', new_task_path, class: "btn-info"%></button>
             </h1>
         </div>
       </div>
@@ -14,7 +14,7 @@
               <thead>
                 <tr>
                   <th class="col-md-3">Description</th>
-                  <th class="col-md-2" colspan="1">Edit complete?</th>
+                  <th class="col-md-2" colspan="1">Complete</th>
                   <th class="col-md-2"colspan="1">Date</th>
                   <th class="col-md-3" colspan="3"></th>
                 </tr>
@@ -26,9 +26,9 @@
                   <td><%= task.description %></td>
                   <td><%= task.complete.to_s.capitalize %> </td>
                   <td><%= task.date%> </td>
-                  <td><button type="button" class="btn btn-success"><%= link_to 'Show', task %></button></td>
-                  <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_task_path(task) %></button></td>
-                  <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+                  <td><button type="button" class="btn btn-primary"><%= link_to 'Show', task, class: "btn-primary" %></button></td>
+                  <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_task_path(task), class: "btn-warning" %></button></td>
+                  <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', task, class: "btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
                 </tr>
                 <% end %>
               </tbody>
