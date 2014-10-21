@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     quote3.phrase = "\"Autumn is a second spring when every leaf is a flower.\""
     quote3.author = "Albert Camus"
 
-    @people_quotes = [quote1, quote2, quote3]
+    @quotes = [quote1, quote2, quote3]
 
   end
 
