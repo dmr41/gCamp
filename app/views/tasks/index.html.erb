@@ -3,7 +3,8 @@
       <div class="row">
         <div class="col-md-12">
             <h1>Listing tasks
-              <button type="button" class="btn btn-info pull-right"><%= link_to 'New Task', new_task_path, class: "btn-info"%></button>
+              <small><button type="button" class="btn btn-info pull-right"><%= link_to 'Create Task', new_task_path, class: "btn-info"%></button>
+              </small>
             </h1>
         </div>
       </div>
@@ -29,9 +30,12 @@
 
                   <td>
                     <div class="pull-right">
-                      <button type="button" class="btn btn-primary"><%= link_to 'Show', task, class: "btn-primary" %></button>
-                      <button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_task_path(task), class: "btn-warning" %></button>
-                      <button type="button" class="btn btn-danger"><%= link_to 'Destroy', task, class: "btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                      <button type="button" class="btn btn-primary">
+                      <%= link_to 'Show', task, class: "btn-primary" %></button>
+                      <button type="button" class="btn btn-warning">
+                      <%= link_to 'Edit', edit_task_path(task), class: "btn-warning" %></button>
+                      <button type="button" class="btn btn-danger">
+                      <%= link_to 'Destroy', task, class: "btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></button>
                     </div>
                   </td>
                 </tr>
