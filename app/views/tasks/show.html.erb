@@ -3,14 +3,23 @@
       <% if notice == "Task was successfully created."%>
         <p id="notice" class="alert alert-success"><%= notice %></p>
       <%end%>
+      <br></br>
+      <p>
+        <strong>Description: </strong>
+        <strong class="tsize"><%= @task.description%></strong>
+      </p>
 
-  <div><strong>Description: </strong>
-  <%= @task.description %>
-</div>
-  <p><strong>Complete: </strong>
-    <%=@task.complete %></p>
-  </p>
-<br></br>
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
-</div>
+      <p>
+        <strong>Complete: </strong>
+        <strong class="tsize"><%=@task.complete%></strong
+      </p>
+
+      <p>
+        <strong>Due Date: </strong>
+        <strong class="tsize"><%=@task.date%></strong>
+        </p>
+      </p>
+      <br></br>
+    <%= link_to 'Edit', edit_task_path(@task) %> |
+    <%= link_to 'Back', tasks_path %>
+    </div>

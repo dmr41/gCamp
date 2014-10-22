@@ -1,14 +1,21 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 h3 a {text-decoration: none; color:green;}
+
 .page-header{
               border-bottom: 2px solid pink;
             }
+.tsize {font-size: 18px;
+        color: gray;}
+
+p strong {font-size: 24px}
 
 .bill {margin-left: 30px;
        padding-top: 10px;
        padding-bottom: 10px;}
+
 .btn {margin-left: 20px;
           margin-top: 1%;}
 .btn.btn-primary.col-md-offset-1 {margin-left: 138px;
