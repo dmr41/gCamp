@@ -16,7 +16,7 @@
 
       <p>
         <strong>Due Date: </strong>
-        <strong class="tsize"><%=@task.date%></strong>
+        <strong class="tsize"><%= @task.date.strftime("%m/%d/%Y")%></strong>
         </p>
       </p>
       <br></br>
