@@ -1,8 +1,8 @@
 <div class="outercontainer">
     <div class="container-fluid">
-      <% if notice.is_a? String %>
-<p id="notice" class="alert alert-success"><%= notice %></p>
-<%end%>
+      <% if notice == "Task was successfully created."%>
+        <p id="notice" class="alert alert-success"><%= notice %></p>
+      <%end%>
 
   <div><strong>Description: </strong>
   <%= @task.description %>
