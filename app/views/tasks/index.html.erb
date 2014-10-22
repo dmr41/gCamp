@@ -6,12 +6,14 @@
               <small><button type="button" class="btn btn-info pull-right"><%= link_to 'Create Task', new_task_path, class: "btn-info"%></button>
               </small>
             </h1>
+
+
         </div>
       </div>
      </div>
       <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped">
+            <table class="table">
               <thead>
                 <tr>
                   <th class"col-md-8">Description</th>
@@ -23,7 +25,13 @@
 
               <tbody>
                 <% @tasks.each do |task| %>
-                <tr>
+                <%if task.date != nil%>
+                <%if task.date >= Date.today && task.date <= Date.today+7%>
+                  <tr class="alert alert-success">
+                <% else%>
+                  <tr>
+                  <%end%>
+                  <%end%>
                   <td class"col-md-8"><%= task.description %></td>
                   <td><%= task.complete.to_s %> </td>
                       <%if task.date%>
@@ -32,6 +40,7 @@
                         <td><%=task.date%></td>
                       <%end%>
                       </td>
+
                   <td>
                     <div class="pull-right">
                       <button type="button" class="btn btn-primary">
