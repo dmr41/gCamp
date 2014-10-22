@@ -10,28 +10,36 @@
       </ul>
     </div>
   <% end %>
-<!-- <form class="form-horizontal" role="form"> -->
-  <div class="form-group">
-      <div class="field">
-        <%= f.label :description, class: "col-sm-2 col-sm-offset-1"%>
-        <%= f.text_field :description, class: "col-sm-4 col-sm-offset-1"%>
-    <br></br>
-    <div>
-      <% unless current_page?(new_task_path) %>
-        <%= f.check_box :complete%>
-        <%= f.label :complete%>
-      <%end%>
+
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-8">
+        <%= f.label :description, class: "col-md-2"%>
+        <%= f.text_field :description, class: "col-md-6"%>
       </div>
-      <br></br>
-      <%= f.date_field :date%>
-      <%= f.label :date%>
-      <br></br>
-      <div>
-      <div class="actions">
-        <%= f.submit class: 'btn btn-primary' %>
+      </div>
+      <div class="row bill">
+        <div class="col-sm-offset-1">
+        <% unless current_page?(new_task_path) %>
+          <%= f.check_box :complete%>
+          <%= f.label :complete%>
+        <%end%>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <%= f.label :date, class: "col-md-2"%>
+          <%= f.date_field :date, class: "col-md-4"%>
+        </div>
+      </div>
+
+      <div class="row"
+        <div class="actions">
+          <%= f.submit class: 'btn btn-primary col-md-offset-1'%>
+        </div>
       </div>
     </div>
-    </div>
-    </div>
+  </form>
 <% end %>
-<!-- </form> -->

@@ -13,22 +13,27 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="col-md-3">Description</th>
-                  <th class="col-md-2" colspan="1">Complete</th>
-                  <th class="col-md-2"colspan="1">Date</th>
-                  <th class="col-md-3" colspan="3"></th>
+                  <th class"col-md-8">Description</th>
+                  <th>Complete</th>
+                  <th>Date</th>
+                  <th colspan="3"></th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @tasks.each do |task| %>
                 <tr>
-                  <td><%= task.description %></td>
+                  <td class"col-md-8"><%= task.description %></td>
                   <td><%= task.complete.to_s.capitalize %> </td>
-                  <td><%= task.date%> </td>
-                  <td><button type="button" class="btn btn-primary"><%= link_to 'Show', task, class: "btn-primary" %></button></td>
-                  <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_task_path(task), class: "btn-warning" %></button></td>
-                  <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', task, class: "btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+                  <td><%= task.date%></td>
+
+                  <td>
+                    <div class="pull-right">
+                      <button type="button" class="btn btn-primary"><%= link_to 'Show', task, class: "btn-primary" %></button>
+                      <button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_task_path(task), class: "btn-warning" %></button>
+                      <button type="button" class="btn btn-danger"><%= link_to 'Destroy', task, class: "btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                    </div>
+                  </td>
                 </tr>
                 <% end %>
               </tbody>

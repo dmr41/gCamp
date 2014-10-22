@@ -7,7 +7,8 @@
   <div><strong>Description: </strong>
   <%= @task.description %>
 </div>
-  <p><strong>Edited: </strong> <%=@task.complete %></p>
+  <p><strong>Complete: </strong>
+    <%=@task.complete %></p>
   </p>
 <br></br>
 <%= link_to 'Edit', edit_task_path(@task) %> |
