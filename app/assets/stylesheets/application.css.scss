@@ -2,7 +2,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.pull-right.retext {font-size: 18px;}
+.test1 {font-size: 14px;
+        padding-right: 2em;}
+
+.pull-right.retext {font-size: 14px;}
 h3 a {text-decoration: none; color:green;}
 .page-header{
               border-bottom: 2px solid black;
