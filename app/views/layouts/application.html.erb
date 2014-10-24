@@ -12,18 +12,39 @@
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
-      <h3><%= link_to("gCamp", root_path) %> </h3>
+      <h3>
+        <%= link_to("gCamp", root_path) %>
+      </h3>
     </div>
     <div class="outercontainer">
       <%= yield %>
     <hr>
 
     <footer>
-      <div><%= link_to_unless_current("About", abouty_path) %>
+      <div class="row">
+      <div class="col-sm-3"><%= link_to_unless_current("About", abouty_path) %>
         | <%= link_to_unless_current("Terms", termy_path) %>
         | <%= link_to_unless_current("FAQ", faqy_path) %>
         | <%= link_to_unless_current("Tasks", tasks_path) %>
       </div>
+      <div class="pull-right">
+        <%= link_to "https://github.com/dmr41" do %>
+            <%=image_tag("github.png", width: "30em")%>
+        <% end %> |
+
+        <%= link_to "https://www.linkedin.com/profile/view?id=127016445&trk=nav_responsive_tab_profile" do %>
+            <%=image_tag("linkedin.png", width: "30em")%>
+        <% end %> |
+
+        <%= link_to "https://twitter.com/dmr4100" do %>
+            <%=image_tag("twitter.png", width: "30em")%>
+        <% end %> |
+
+        <%= link_to "https://students.gschool.it/cohorts/3/class_notes" do %>
+            <%=image_tag("gschool.png", width: "70em")%>
+        <% end %>
+      </div>
+    </div>
     </footer>
     </div>
   </body>
