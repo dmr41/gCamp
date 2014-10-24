@@ -1,7 +1,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+.table {margin-left: 13px;}
 .test1 {font-size: 14px;
         padding-right: 2em;}
 
@@ -80,20 +80,11 @@ body {background-color: #EDEDED;}
 div h3 {padding-left: 11%}
 footer div {margin-left: 2%;}
 
-hr {border: 1px solid #ABABAB;}
+hr {border: 1px solid #ABABAB;
+    margin-left: 13px;}
 
-.col-sm-offset-1 {margin-left: 105px;}
-/* * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
+.col-sm-offset-1 {padding-left: 15px;}
+/*
  *= require_tree .
  *= require_self
  */

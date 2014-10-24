@@ -1,29 +1,27 @@
-<div class="outercontainer">
-    <div class="container-fluid">
-      <% if notice == "Task was successfully created." || notice == "Task was successfully destroyed." || notice == "Task was successfully updated."%>
-        <p id="notice" class="alert alert-success"><%= notice %></p>
-      <%end%>
-      <br></br>
-      <p>
-        <strong>Description: </strong>
-        <strong class="tsize"><%= @task.description%></strong>
-      </p>
+<div class="container-fluid">
+  <% if notice == "Task was successfully created." || notice == "Task was successfully destroyed." || notice == "Task was successfully updated."%>
+    <p id="notice" class="alert alert-success"><%= notice %></p>
+  <%end%>
+  <p>
+    <strong>Description: </strong>
+    <strong class="tsize"><%= @task.description%></strong>
+  </p>
 
-      <p>
-        <strong>Complete: </strong>
-        <strong class="tsize"><%=@task.complete%></strong
-      </p>
+  <p>
+    <strong>Complete: </strong>
+    <strong class="tsize"><%=@task.complete%></strong
+  </p>
 
-      <p>
-        <strong>Due Date: </strong>
-        <%if @task.date != nil %>
-          <strong class="tsize"><%= @task.date.strftime("%m/%d/%Y")%></strong>
-        <%else%>
-          <strong class="tsize"><%= @task.date%></strong>
-        <%end%>
-        </p>
-      </p>
-      <br></br>
-    <%= link_to 'Edit', edit_task_path(@task) %> |
-    <%= link_to 'Back', tasks_path %>
-    </div>
+  <p>
+    <strong>Due Date: </strong>
+    <%if @task.date != nil %>
+      <strong class="tsize"><%= @task.date.strftime("%m/%d/%Y")%></strong>
+    <%else%>
+      <strong class="tsize"><%= @task.date%></strong>
+    <%end%>
+    </p>
+  </p>
+  <br></br>
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
+</div>
