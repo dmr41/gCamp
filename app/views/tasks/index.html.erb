@@ -1,64 +1,85 @@
-      <div class="page-header">
-      <div class="row">
-        <div class="col-md-12">
-            <h1 class="heading-shift">Listing tasks
-              <small class="pull-right retext">
-                <text class="sorty"><%= link_to_unless_current('All Tasks', tasks_path(all_task: "All tasks"))%> |
-                <%= link_to_unless_current 'Incomplete Tasks', tasks_path(incomplete: "Incomplete tasks")%></text>
-                <%= link_to 'Create Task', new_task_path, class: "btn btn-info shifty"%>
-              </small>
-            </h1>
-            <hr>
-        </div>
-      </div>
-     </div>
-      <div class="row">
-        <div class="col-md-12">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class"col-md-8">Description</th>
-                  <th>Complete</th>
-                  <th>Date</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
+<div class="page-header">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="heading-shift">
+        Listing tasks
+        <small class="pull-right retext">
+          <text class="sorty">
+            <%# if current_page?(controller: 'tasks', action: 'index', incomplete: "" ) %>
+              <%# booly = false %>
+            <%# elsif%>
+              <%# booly = true %>
+              <%#= link_to_unless_current('All Tasks', tasks_path(all_task: "All tasks"))%>
+            <%#end%>
+            <%#=booly%>
+            <%= link_to_if(@booly, "All Tasks", tasks_path(all_task: "All tasks")) %>
+            <%= link_to_unless_current 'Incomplete Tasks', tasks_path(incomplete: "Incomplete tasks")%>
+          </text>
+            <%= link_to 'Create Task', new_task_path, class: "btn btn-info shifty"%>
+        </small>
+      </h1>
+      <hr>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
 
-              <tbody>
-                <% @tasks.each do |task| %>
-                <%if task.date != nil%>
-                <%if task.date >= Date.today && task.date <= Date.today+7%>
-                  <tr class="alert alert-success">
-                <% else%>
-                  <tr>
-                  <%end%>
-                  <%end%>
-                  <td class"col-md-8"><%= task.description %></td>
-                  <%if task.complete == true %>
-                    <td><text class="glyphicon glyphicon-ok"><text></td>
-                  <%elsif%>
-                    <td><text class="glyphicon glyphicon-remove"><text></td>
-                  <%end%>
-                      <%if task.date%>
-                      <td><%= task.date.strftime("%m/%d/%Y")%></td>
-                      <%else %>
-                        <td><%=task.date%></td>
-                      <%end%>
-                      </td>
+      <thead>
+        <tr>
+          <th class"col-md-8">Description</th>
+          <th>Complete</th>
+          <th>Date</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-                  <td>
-                    <div class="pull-right">
-                      <%= link_to 'Show', task, class: "btn btn-primary" %>
-                      <%= link_to 'Edit', edit_task_path(task), class: "btn btn-warning" %>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <%if task.date != nil && task.date >= Date.today && task.date <= Date.today+7%>
+            <tr class="alert alert-success">
+          <% else%>
+            <tr>
+          <%end%>
 
-                      <%= link_to 'Destroy', task, class: "btn btn-danger",
-                                                    method: :delete,
-                                                    data: { confirm: 'Are you sure?' } %>
-                    </div>
-                  </td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
-        </div>
-      </div>
+          <td class"col-md-8">
+            <%= task.description %>
+          </td>
+          <%if task.complete == true %>
+            <td>
+              <text class="glyphicon glyphicon-ok">
+              <text>
+            </td>
+          <%elsif%>
+            <td>
+              <text class="glyphicon glyphicon-remove">
+              <text>
+            </td>
+          <%end%>
+
+          <%if task.date%>
+            <td>
+              <%= task.date.strftime("%m/%d/%Y")%>
+            </td>
+          <%else %>
+            <td>
+              <%=task.date%>
+            </td>
+            <%end%>
+
+          <td>
+            <div class="pull-right">
+              <%= link_to 'Show', task, class: "btn btn-primary" %>
+              <%= link_to 'Edit', edit_task_path(task), class: "btn btn-warning" %>
+              <%= link_to 'Destroy', task, class: "btn btn-danger",
+                                            method: :delete,
+                                            data: { confirm: 'Are you sure?' } %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

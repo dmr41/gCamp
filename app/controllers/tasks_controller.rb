@@ -5,11 +5,13 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
-    
+    @booly = false
     if params[:all_task]
       @tasks = Task.all
+      @booly = false
     elsif params[:incomplete]
       @tasks = Task.where(complete: false)
+      @booly = true
     end
   end
 
