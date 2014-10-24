@@ -25,21 +25,22 @@
         <div class="col-sm-1">
           <%= f.label :date, class: "control-label"%>
         </div>
-          <div class="col-sm-4 col-sm-offset-1">
+          <div class="col-sm-5 col-sm-offset-1">
             <%= f.date_field :date, class: "form-control" %>
           </div>
           <br>
           <br>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-1">
+        <div class="col-sm-offset-2">
         <% unless current_page?(new_task_path) %>
-          <%= f.check_box :complete%>
-          <%= f.label :complete%>
+          <div class="chckshift"><%= f.check_box :complete%>
+            <%= f.label :complete, class: "control-label"%>
+          </div>
         <%end%>
+        </div>
       </div>
-      </div>
-        <div class="actions col-sm-offset-1">
+        <div class="actions col-sm-offset-2">
           <%= f.submit class: 'btn btn-primary'%>
         </div>
 <% end %>

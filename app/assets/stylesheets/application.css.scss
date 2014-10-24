@@ -1,6 +1,11 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.actions.col-sm-offset-2 {padding-left: 13px;}
+
+.form-group.col-sm-offset-2 {margin-left: 13px;}
+
 .table {margin: 13px;
         margin-top: -30px;
         }
@@ -74,7 +79,7 @@ border-color:black;}
         width: 90%;
         height: 100%;
         position: relative;}
-
+.chckshift {padding-left: 15px;}
 .sorty {padding-right: 20px;}
 .shifty {margin-right: -13px;}
 .panel {border-color: black;
@@ -93,7 +98,7 @@ hr {border: 1px solid #ABABAB;
     margin-left: 13px;
     margin-right: -13px;}
 
-.col-sm-offset-1 {padding-left: 15px;}
+.col-sm-offset-1 {padding-left: 14px;}
 /*
  *= require_tree .
  *= require_self
