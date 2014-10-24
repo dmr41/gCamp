@@ -1,14 +1,20 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-.table {margin-left: 13px;}
+.table {margin: 13px;
+        margin-top: -30px;
+        }
 .test1 {font-size: 14px;
         padding-right: 2em;}
 
+.heading-shift {padding-left: 15px;
+                }
 .pull-right.retext {font-size: 14px;}
 h3 a {text-decoration: none; color:green;}
-.page-header{
-              border-bottom: 2px solid black;
+
+.page-header{padding-left: 0px;
+             border-bottom: 0px solid black;
+
             }
 .tsize {font-size: 18px;
         color: gray;}
@@ -69,7 +75,8 @@ border-color:black;}
         height: 100%;
         position: relative;}
 
-
+.sorty {padding-right: 20px;}
+.shifty {margin-right: -13px;}
 .panel {border-color: black;
         position: relative;}
 
@@ -77,11 +84,14 @@ border-color:black;}
          font-family: "Arial";}
 
 body {background-color: #EDEDED;}
+
 div h3 {padding-left: 11%}
+
 footer div {margin-left: 2%;}
 
 hr {border: 1px solid #ABABAB;
-    margin-left: 13px;}
+    margin-left: 13px;
+    margin-right: -13px;}
 
 .col-sm-offset-1 {padding-left: 15px;}
 /*

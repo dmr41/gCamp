@@ -1,15 +1,14 @@
       <div class="page-header">
       <div class="row">
         <div class="col-md-12">
-            <h1>Listing tasks
+            <h1 class="heading-shift">Listing tasks
               <small class="pull-right retext">
-                <%= link_to_unless_current('All Tasks', tasks_path(all_task: "All tasks"))%> |
-                <%= link_to_unless_current 'Incomplete Tasks', tasks_path(incomplete: "Incomplete tasks")%>
-                <%= link_to 'Create Task', new_task_path, class: "btn btn-info"%>
+                <text class="sorty"><%= link_to_unless_current('All Tasks', tasks_path(all_task: "All tasks"))%> |
+                <%= link_to_unless_current 'Incomplete Tasks', tasks_path(incomplete: "Incomplete tasks")%></text>
+                <%= link_to 'Create Task', new_task_path, class: "btn btn-info shifty"%>
               </small>
             </h1>
-
-
+            <hr>
         </div>
       </div>
      </div>
