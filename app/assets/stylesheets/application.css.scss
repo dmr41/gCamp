@@ -2,6 +2,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+.glyphicon-ok {color: green;
+               padding-left: 20px;}
+
+.glyphicon-remove {color: red;
+                  padding-left: 20px;}
+
 .actions.col-sm-offset-2 {padding-left: 13px;}
 
 .form-group.col-sm-offset-2 {margin-left: 13px;}

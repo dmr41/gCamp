@@ -34,7 +34,11 @@
                   <%end%>
                   <%end%>
                   <td class"col-md-8"><%= task.description %></td>
-                  <td><%= task.complete.to_s %> </td>
+                  <%if task.complete == true %>
+                    <td><text class="glyphicon glyphicon-ok"><text></td>
+                  <%elsif%>
+                    <td><text class="glyphicon glyphicon-remove"><text></td>
+                  <%end%>
                       <%if task.date%>
                       <td><%= task.date.strftime("%m/%d/%Y")%></td>
                       <%else %>
