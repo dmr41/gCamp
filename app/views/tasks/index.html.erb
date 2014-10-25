@@ -5,15 +5,8 @@
         Listing tasks
         <small class="pull-right retext">
           <text class="sorty">
-            <%# if current_page?(controller: 'tasks', action: 'index', incomplete: "" ) %>
-              <%# booly = false %>
-            <%# elsif%>
-              <%# booly = true %>
-              <%#= link_to_unless_current('All Tasks', tasks_path(all_task: "All tasks"))%>
-            <%#end%>
-            <%#=booly%>
-            <%= link_to_if(@booly, "All Tasks", tasks_path(all_task: "All tasks")) %>
-            <%= link_to_unless_current 'Incomplete Tasks', tasks_path(incomplete: "Incomplete tasks")%>
+            <%= link_to_unless_current 'All Tasks', tasks_path(all_task: "All tasks")%> |
+            <%= link_to_if(@booly, "Incomplete Tasks", tasks_path(incomplete: "Incomplete")) %>
           </text>
             <%= link_to 'Create Task', new_task_path, class: "btn btn-info shifty"%>
         </small>
