@@ -36,7 +36,10 @@
           <td class="col-md-2">
             <%=mail_to(user.uemail)%>
           </td>
-          <td class="col-md-8">
+          <td class="col-md-7">
+          </td>
+          <td>
+            <%= link_to("edit", edit_user_path(user))%>
           </td>
         </tr>
         <% end %>
