@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(complete: false)
+    @tasks = Task.all#where(complete: false)
     @booly = false
     if params[:all_task]
       @tasks = Task.all

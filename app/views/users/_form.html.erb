@@ -1,0 +1,48 @@
+<%= form_for(@user, {class: "form-horizontal center"}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <%= f.label "First Name", class: "control-label"%>
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :ufname, class: "form-control"%>
+      </div>
+      <br>
+      <br>
+    </div>
+
+      <div class="form-group">
+        <div class="col-sm-2">
+          <%= f.label "Last Name", class: "control-label"%>
+        </div>
+          <div class="col-sm-3 ">
+            <%= f.text_field :ulname, class: "form-control" %>
+          </div>
+          <br>
+          <br>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-2">
+          <%= f.label "email", class: "control-label"%>
+        </div>
+          <div class="col-sm-3">
+            <%= f.text_field :uemail, class: "form-control" %>
+          </div>
+          <br>
+          <br>
+      </div>
+        <div class="actions col-sm-offset-2">
+          <%= f.submit class: 'btn btn-primary'%>
+        </div>
+<% end %>

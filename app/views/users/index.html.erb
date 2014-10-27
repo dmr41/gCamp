@@ -1,0 +1,46 @@
+<% if notice == 'User was successfully created.' || notice == "User was successfully destroyed." || notice == "Task was successfully updated."%>
+  <p id="notice" class="alert alert-success "><%= notice %></p>
+<%end%>
+<div class="page-header">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="heading-shift">
+        Users
+        <small class="pull-right retext">
+            <%= link_to 'Create User', new_user_path, class: "btn btn-info shifty"%>
+        </small>
+      </h1>
+      <hr>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+
+      <thead>
+        <tr class>
+          <th class="col-md-2">Name</th>
+          <th class="col-md-2">email</th>
+          <th colspan="8"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td class="col-md-2">
+            <% name_combo = "#{user.ufname} #{user.ulname}"%>
+            <%= name_combo %>
+          </td>
+          <td class="col-md-2">
+            <%=mail_to(user.uemail)%>
+          </td>
+          <td class="col-md-8">
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
