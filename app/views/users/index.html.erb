@@ -30,7 +30,7 @@
         <% @users.each do |user| %>
         <tr>
           <td class="col-md-2">
-            <% name_combo = "#{user.ufname} #{user.ulname}"%>
+            <% name_combo = "#{user.ufname.capitalize} #{user.ulname.capitalize}"%>
             <%= name_combo %>
           </td>
           <td class="col-md-2">
