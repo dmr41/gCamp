@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="heading-shift">
-        Listing tasks
+        Tasks
         <small class="pull-right retext">
           <text class="sorty">
             <%= link_to_unless_current 'All Tasks', tasks_path(all_task: "All tasks")%> |
@@ -31,7 +31,7 @@
       <tbody>
         <% @tasks.each do |task| %>
           <%if task.date != nil && task.date >= Date.today && task.date <= Date.today+7%>
-            <tr class="alert alert-success">
+            <tr class="alert alert-danger">
           <% else%>
             <tr>
           <%end%>

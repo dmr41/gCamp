@@ -1,3 +1,4 @@
+<%= params %>
 <%= form_for(@user, {class: "form-horizontal center"}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -43,6 +44,8 @@
           <br>
       </div>
         <div class="actions col-sm-offset-2">
-          <%= f.submit class: 'btn btn-primary'%>
+
+          <%= f.submit "button", class: 'btn btn-primary'%>
+
         </div>
 <% end %>
