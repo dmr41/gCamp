@@ -1,0 +1,17 @@
+<%if notice !=nil%>
+<div class="alert alert-success">
+<%= notice %>
+</div>
+<%end%>
+<h2>
+  Current Project
+</h2>
+<hr>
+<h3 class="page-header">
+  <%=@project.name %>
+  <small class="pull-right">
+  <%=link_to "Edit", edit_project_path(@project), class: "btn btn-success"%>
+  <%=link_to "Destroy", project_path(@project), class: "btn btn-danger",
+                                              method: :delete  %>
+  </small>
+</h1>
