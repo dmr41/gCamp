@@ -3,15 +3,17 @@
 <%= notice %>
 </div>
 <%end%>
-<h2>
+
+
+<h2 class="container">
   Current Project
 </h2>
 <hr>
-<h3 class="page-header">
-  <%=@project.name %>
+<h4 class="page-header">
+  <text class="bobby"><%=@project.name %><text>
   <small class="pull-right">
   <%=link_to "Edit", edit_project_path(@project), class: "btn btn-success"%>
   <%=link_to "Destroy", project_path(@project), class: "btn btn-danger",
                                               method: :delete %>
   </small>
-</h1>
+</h4>
