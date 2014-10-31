@@ -4,13 +4,13 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(complete: false)
+    @tasks = Task.where(complete: false).order(params[:sort])
     @booly = false
     if params[:all_task]
-      @tasks = Task.all
+      @tasks = Task.order(params[:sort])
       @booly = true
     elsif params[:incomplete]
-      @tasks = Task.where(complete: false)
+      @tasks = Task.where(complete: false).order(params[:sort])
       @booly = false
     end
   end
