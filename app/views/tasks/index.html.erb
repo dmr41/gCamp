@@ -5,7 +5,7 @@
         Tasks
         <small class="pull-right retext">
           <text class="sorty">
-            <%= link_to_unless_current 'All Tasks', tasks_path(all_task: "All tasks")%> |
+            <%= link_to_unless_current 'All Tasks', tasks_path(all_task:"All tasks")%> |
             <%= link_to_if(@booly, "Incomplete Tasks", tasks_path(incomplete: "Incomplete")) %>
           </text>
             <%= link_to 'Create Task', new_task_path, class: "btn btn-info shifty"%>

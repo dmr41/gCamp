@@ -63,10 +63,19 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+
+    # if @tasks = Task.order(params[:sort])
+    if tasks_path(params[:incomplete] )
+      redirect_to tasks_path(incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
+    else
+      redirect_to tasks_path(all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
     end
+    # elsif @tasks = Task.where(complete: false).order(params[:sort])
+    #   redirect_to tasks_path(incomplete: "Incomplete"), notice: 'Task was successfully destroyed.'
+    # else
+    #   redirect_to tasks_path(all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
+    # end
+
   end
 
   private
