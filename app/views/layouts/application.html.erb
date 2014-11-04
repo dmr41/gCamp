@@ -18,15 +18,15 @@
         <ul class="nav navbar-brand navbar-right">
         <% if current_user %>
         <p class="navadjust">
-          <%= "#{current_user.ufname} #{current_user.ulname}"%>
+          <%= link_to "#{current_user.ufname} #{current_user.ulname}", user_path(current_user)%>
           <%= " | "%>
-          <%= link_to "Sign Out", signout_path %>
+          <%= link_to "Sign Out", sign_out_path %>
         </p >
         <% else %>
           <p class="navadjust">
-          <%= link_to "Sign Up", signup_path %>
+          <%= link_to "Sign Up", sign_up_path %>
           <%= " | "%>
-          <%= link_to "Sign In", signin_path %>
+          <%= link_to "Sign In", sign_in_path %>
         </p>
         <% end %>
       </ul>

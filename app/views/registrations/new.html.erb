@@ -2,15 +2,23 @@
 
 <h1>Sign Up</h1>
 
-<%= form_for(@user, url: signup_path) do |f| %>
+<%= form_for(@user, url: sign_up_path) do |f| %>
 
   <% if @user.errors.present? %>
-    <ul>
       <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p class="redalert"><%= message %></p>
       <% end %>
-    </ul>
   <% end %>
+
+  <div class="form-group">
+    <%= f.label "First Name", class: "label-control" %>
+    <%= f.text_field :ufname, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Last Name", class: "label-control" %>
+    <%= f.text_field :ulname, class: "form-control" %>
+  </div>
 
   <div class="form-group">
     <%= f.label :email, class: "label-control" %>

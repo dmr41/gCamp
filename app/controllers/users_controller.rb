@@ -45,12 +45,12 @@ class UsersController < ApplicationController
 
   def update
       @user.update(user_params)
-      redirect_to users_path, notice: 'User was successfully updated.' 
+      redirect_to users_path, notice: 'User was successfully updated.'
   end
 
 
   def user_params
-    params.require(:user).permit(:ufname, :ulname, :email)
+    params.require(:user).permit(:ufname, :ulname, :email, :password, :password_confirmation)
   end
 
 
