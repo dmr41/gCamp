@@ -2,7 +2,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+div.well.col-md-4.col-md-offset-4 {margin-top: 2em;}
+div.whitespce { padding-top:33em}
+
+p.navadjust {padding-right: 5em;
+             margin-top: -0.5em;
+             color: white;}
+
 .alert-success {text-align: center}
+
 .glyphicon-ok {color: green;
                padding-left: 20px;}
 
@@ -22,7 +30,7 @@
 .heading-shift {padding-left: 15px;
                 }
 .pull-right.retext {font-size: 14px;}
-h3 a {text-decoration: none; color:green;}
+h3 a {text-decoration: none; color:white;}
 
 .page-header{padding-left: 0px;
              border-bottom: 0px solid black;
@@ -111,6 +119,8 @@ hr {border: 1px solid #ABABAB;
     margin-right: -13px;}
 
 .col-sm-offset-1 {padding-left: 14px;}
+
+
 /*
  *= require_tree .
  *= require_self

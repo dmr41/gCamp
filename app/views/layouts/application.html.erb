@@ -8,13 +8,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
-    <title>gCamp</title>
+    <title>gCamp
+</title>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
       <h3>
         <%= link_to("gCamp", root_path) %>
+        <ul class="nav navbar-brand navbar-right">
+        <% if current_user %>
+        <p class="navadjust">
+          <%= "#{current_user.ufname} #{current_user.ulname}"%>
+          <%= " | "%>
+          <%= link_to "Sign Out", signout_path %>
+        </p >
+        <% else %>
+          <p class="navadjust">
+          <%= link_to "Sign Up", signup_path %>
+          <%= " | "%>
+          <%= link_to "Sign In", signin_path %>
+        </p>
+        <% end %>
+      </ul>
+      </div>
       </h3>
+    </nav>
     </div>
     <div class="outercontainer">
       <%= yield %>

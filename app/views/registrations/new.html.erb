@@ -1,0 +1,38 @@
+<div class="well col-md-4 col-md-offset-4">
+
+<h1>Sign Up</h1>
+
+<%= form_for(@user, url: signup_path) do |f| %>
+
+  <% if @user.errors.present? %>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :email, class: "label-control" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, class: "label-control" %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "label-control" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "Sign up", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+</div>
+<div class="whitespce">
+
+</div>
