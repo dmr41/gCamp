@@ -30,7 +30,7 @@
         <% @users.each do |user| %>
         <tr>
           <td class="col-md-2">
-            <% name_combo = "#{user.ufname} #{user.ulname}"%>
+            <% name_combo = "#{user.first_name} #{user.last_name}"%>
             <%= link_to "#{name_combo}", user_path(user) %>
           </td>
           <td class="col-md-2">
