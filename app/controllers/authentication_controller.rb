@@ -1,8 +1,8 @@
 class AuthenticationController < ApplicationController
 
   def create
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
+    user = User.find_by_email(params[:authentication][:email])
+    if user && user.authenticate(params[:authentication][:password])
       session[:user_id] = user.id
       redirect_to root_path
     else
@@ -12,7 +12,7 @@ class AuthenticationController < ApplicationController
   end
 
   def destroy
-    session.destroy
+    session.clear
     redirect_to root_path
   end
 

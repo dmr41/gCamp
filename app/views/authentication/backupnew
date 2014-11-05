@@ -1,7 +1,4 @@
-<div class="well col-md-4 col-md-offset-4">
-<h1>Sign in to gCamp</h1>
-
-<%= form_for :authentication, url: sign_in_path do |f| %>
+<%= form_for :authentication, sign_in_path do |f| %>
   <% if @sign_in_error %>
     <p class="redalert">
       <%= @sign_in_error %>
@@ -22,7 +19,3 @@
     <%= f.submit "Sign in", class: "btn btn-primary" %>
   </div>
 <% end %>
-
-</div>
-<div class="whitespce">
-</div>
