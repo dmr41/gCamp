@@ -77,7 +77,21 @@ feature "signup" do
     click_on "Sign up"
     click_on "Sign Out"
     expect(page).to have_content("Sign In")
+  end
 
+  scenario "User create and view" do
+    visit root_path
+    click_on "Users"
+    click_on "Create User"
+    fill_in "First name", with: "Bill"
+    fill_in "Last name", with: "bally"
+    fill_in "Email", with: "a@b.com"
+    fill_in "Password", with: "a"
+    fill_in "Password confirmation", with: "a"
+    click_on "Create User"
+    save_and_open_page
+    click_on "edit"
+    save_and_open_page
   end
 
 end
