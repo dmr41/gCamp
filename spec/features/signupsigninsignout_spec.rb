@@ -89,9 +89,7 @@ feature "signup" do
     fill_in "Password", with: "a"
     fill_in "Password confirmation", with: "a"
     click_on "Create User"
-    save_and_open_page
     click_on "edit"
-    save_and_open_page
   end
 
 end
