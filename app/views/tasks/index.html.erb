@@ -5,8 +5,8 @@
         Tasks
         <small class="pull-right retext">
           <text class="sorty">
-            <%= link_to_unless_current 'All Tasks', tasks_path(all_task:"All tasks")%> |
-            <%= link_to_if(@booly, "Incomplete Tasks", tasks_path(incomplete: "Incomplete")) %>
+              <%=link_to_if @booly == true, "All", tasks_path(all_tasks: "complete") %> |
+              <%=link_to_if @booly == false, "Incomplete", tasks_path(incomplete: "incomplete") %>
           </text>
             <%= link_to 'Create Task', new_task_path, class: "btn btn-info shifty"%>
         </small>
@@ -20,18 +20,18 @@
     <table class="table">
 
       <thead>
-        <% if @booly%>
+        <% if @booly == false %>
         <tr>
-          <th><%=link_to "Description", all_task: "All tasks", sort: :description %></th>
-          <th><%=link_to "Complete", all_task: "All tasks", sort: :complete %></th>
-          <th><%=link_to "Date", all_task: "All tasks", sort: :date %></th>
+          <th><%=link_to "Description", all_tasks: "complete", sort: :description %></th>
+          <th><%=link_to "Complete", all_tasks: "complete", sort: :complete %></th>
+          <th><%=link_to "Date", all_tasks: "complete", sort: :date %></th>
           <th colspan="3"></th>
         </tr>
         <%else%>
         <tr>
-          <th><%=link_to "Description", incomplete: "Incomplete", sort: :description %></th>
-          <th><%=link_to "Complete", incomplete: "Incomplete", sort: :complete %></th>
-          <th><%=link_to "Date", incomplete: "Incomplete", sort: :date %></th>
+          <th><%=link_to "Description", sort: :description %></th>
+          <th><%=link_to "Complete", sort: :complete %></th>
+          <th><%=link_to "Date", sort: :date %></th>
           <th colspan="3"></th>
         </tr>
         <%end%>
