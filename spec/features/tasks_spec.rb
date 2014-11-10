@@ -87,6 +87,15 @@ feature "signup" do
     click_on "All"
     expect(page).to have_content("David")
     expect(page).to have_content("11/11/2012")
-    
   end
+end
+
+feature "tasks validation" do
+
+  scenario "tasks description validation can't be blank" do
+    visit new_task_path
+    click_on "Create Task"
+    expect(page).to have_content("Description can't be blank")
+  end
+
 end
