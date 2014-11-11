@@ -1,3 +1,6 @@
+require 'rails_helper'
+
+
 feature "signup" do
 
   scenario "checks successful signup" do
@@ -44,4 +47,14 @@ feature "signup" do
     expect(page).to have_content("Name: Bill baily")
     expect(page).to have_content("email: baily@baily.com")
   end
+
+  scenario "creates a user from user page logins with user logs out" do
+    visit users_path
+    click_on "Create User"
+    click_on "Create User"
+    expect(page).to have_content("First name can't be blank")
+    expect(page).to have_content("Last name can't be blank")
+    expect(page).to have_content("Email can't be blank")
+  end
+
 end

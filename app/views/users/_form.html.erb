@@ -1,15 +1,18 @@
 
 <%= form_for(@user, {class: "form-horizontal center"}) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this task from being saved:</h2>
 
+  <% if @user.errors.any? %>
+    <div class="container-fluid col-sm-offset-2">
+      <div id="error_explanation" class="col-sm-3 alert alert-danger">
+      <h4><%= pluralize(@user.errors.count, "error") %></h4>
+        <ul>
       <% @user.errors.full_messages.each do |message| %>
-        <p class="redalert"><%= message %></p>
+        <li><%= message %></li>
       <% end %>
+    </ul>
     </div>
+  </div>
   <% end %>
-<br>
     <div class="form-group">
       <div class="col-sm-2">
         <%= f.label :first_name, class: "control-label"%>
