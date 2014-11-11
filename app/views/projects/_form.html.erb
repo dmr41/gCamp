@@ -1,18 +1,5 @@
 <%= form_for(@project,{class: "form-horizontal"}) do |p| %>
-
-  <% if @project.errors.any? %>
-
-    <div class="container-fluid col-sm-offset-1">
-      <div id="error_explanation" class="col-sm-3 alert alert-danger">
-        <h4><%= pluralize(@project.errors.count, "error") %></h4>
-        <ul>
-        <% @project.errors.full_messages.each do |message| %>
-          <li><%= message%></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-    <% end %>
+<%= render "layouts/le_mistakes", dbentry: @project %>
 
   <div class="form-group">
     <div class="col-md-1">

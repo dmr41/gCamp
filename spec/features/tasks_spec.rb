@@ -101,13 +101,13 @@ feature "tasks validation" do
     expect(page).to have_content("Description can't be blank")
   end
 
- include ActiveSupport::Testing::TimeHelpers
+  include ActiveSupport::Testing::TimeHelpers
+  
   scenario "task date select is not before today's date" do
     visit new_task_path
     travel_to(1.day.ago) do
       fill_in "Date", with: Date.today
     end
-
     click_on "Create Task"
     expect(page).to have_content("Date is not included in the list")
     expect(page).to have_content("Description can't be blank")
