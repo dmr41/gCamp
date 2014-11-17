@@ -15,7 +15,6 @@ feature "signup" do
     expect(page).to have_content("David")
     expect(page).to have_content("12/12/2020")
     expect(page).to have_content("Task was successfully created.")
-    save_and_open_page
     click_on "Back"
     click_on "Show"
     expect(page).to have_content("David")
