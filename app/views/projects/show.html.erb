@@ -19,5 +19,8 @@
 </h4>
   <br>
 <ol class="breadcrumb">
-  <li><%=link_to "Projects", projects_path%> <%= "> #{@project.name}" %></li>
+  <li><%=link_to "Projects", projects_path%></li>
+  <li><%= " #{@project.name}" %></li>
 </ol>
+  <p class="shifty"><%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project) %></p>
+<br>

@@ -1,15 +1,19 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
+
 
   # GET /tasks
   # GET /tasks.json
 
   def index
     if params[:all_tasks]
-      @tasks = Task.order(params[:sort])
+      @tasks = @project.tasks.order(params[:sort])
       @booly = false
     else
-      @tasks = Task.where(complete: false).order(params[:sort])
+      @tasks = @project.tasks.where(complete: false).order(params[:sort])
       @booly = true
     end
   end
@@ -17,23 +21,25 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @task = @project.tasks.find(params[:id])
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = @project.tasks.new
   end
 
   # GET /tasks/1/edit
   def edit
+    @task = @project.tasks.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
       if @task.save
-        redirect_to @task, notice: 'Task was successfully created.'
+        redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
       else
         render :new
       end
@@ -42,8 +48,9 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @task = @project.tasks.find(params[:id])
       if @task.update(task_params)
-        redirect_to @task, notice: 'Task was successfully updated.'
+        redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
       else
         render :edit
       end
@@ -52,13 +59,14 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @task = @project.tasks.find(params[:id])
     @task.destroy
 
     # if @tasks = Task.order(params[:sort])
-    if tasks_path(params[:incomplete] )
-      redirect_to tasks_path(incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
+    if project_tasks_path(@project, params[:incomplete])
+      redirect_to project_tasks_path(@project, incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
     else
-      redirect_to tasks_path(all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
+      redirect_to project_tasks_path(@project, all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
     end
     # elsif @tasks = Task.where(complete: false).order(params[:sort])
     #   redirect_to tasks_path(incomplete: "Incomplete"), notice: 'Task was successfully destroyed.'
@@ -69,11 +77,6 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:description, :complete, :date)

@@ -1,4 +1,4 @@
-<%= form_for(@task, {class: "form-horizontal center"}) do |f| %>
+<%= form_for([@project,@task], {class: "form-horizontal center"}) do |f| %>
 <%= render "layouts/le_mistakes", dbentry: @task %>
 <br>
     <div class="form-group">
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2">
-        <% unless current_page?(new_task_path) %>
+        <% unless current_page?(new_project_task_path(@project)) %>
           <div class="chckshift"><%= f.check_box :complete%>
             <%= f.label :complete, class: "control-label"%>
           </div>

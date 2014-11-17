@@ -17,18 +17,22 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="col-md-10">
+        <th class="col-md-1">
           Name
         </th>
-
+        <th class="col-md-2">
+          Tasks
+        </th>
       </tr>
     </thead>
     <tbody>
       <% @projects.each do |project| %>
       <tr>
-        <td class="col-md-12">
+        <td class="col-md-1">
           <%= link_to("#{project.name}", project_path(project))%>
         </td>
+        <td class="col-md-2">
+        <%= link_to("#{project.tasks.count}", project_tasks_path(project))%>
         </td>
       </tr>
       <%end%>
