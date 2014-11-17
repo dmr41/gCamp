@@ -147,7 +147,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport
   autoprefixer-rails
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.2.0)

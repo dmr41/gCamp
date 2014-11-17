@@ -5,7 +5,7 @@ gem "rails_12factor"
 end
 
 
-gem "activesupport"
+#gem "activesupport"
 
 gem "pg"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
