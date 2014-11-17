@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="heading-shift">
-        Tasks
+        <%= "Tasks for #{@project.name}"%>
         <small class="pull-right retext">
           <text class="sorty">
               <%=link_to_if @booly == true, "All", project_tasks_path(@project, all_tasks: "complete") %> |
