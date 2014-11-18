@@ -1,11 +1,11 @@
 <%= form_for([@project,@task], {class: "form-horizontal center"}) do |f| %>
-<%= render "layouts/le_mistakes", dbentry: @task %>
-<br>
+
+<div class="col-md-offset-1"><%= render "layouts/le_mistakes", model: @task %></div>
     <div class="form-group">
       <div class="col-sm-1">
         <%= f.label :description, class: "control-label"%>
       </div>
-      <div class="col-sm-5 col-sm-offset-1">
+      <div class="col-sm-4 col-sm-offset-1">
         <%= f.text_field :description, class: "form-control"%>
       </div>
       <br>

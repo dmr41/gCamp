@@ -1,12 +1,12 @@
 
 <%= form_for(@user, {class: "form-horizontal center"}) do |f| %>
 
-<%= render "layouts/le_mistakes", dbentry: @user %>
+<div class="col-md-offset-1 push"><%= render "layouts/le_mistakes", model: @user%></div>
     <div class="form-group">
       <div class="col-sm-2">
         <%= f.label :first_name, class: "control-label"%>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <%= f.text_field :first_name, class: "form-control"%>
       </div>
       <br>
@@ -17,7 +17,7 @@
         <div class="col-sm-2">
           <%= f.label :last_name, class: "control-label"%>
         </div>
-          <div class="col-sm-3 ">
+          <div class="col-sm-4 ">
             <%= f.text_field :last_name, class: "form-control" %>
           </div>
           <br>
@@ -27,7 +27,7 @@
         <div class="col-sm-2">
           <%= f.label "email", class: "control-label"%>
         </div>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <%= f.email_field :email, class: "form-control" %>
           </div>
           <br>
@@ -37,7 +37,7 @@
             <div class="col-sm-2">
             <%= f.label :password, class: "label-control" %>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <%= f.password_field :password, class: "form-control" %>
           </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="col-sm-2 bob">
             <%= f.label :password_confirmation, class: "label-control" %>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
           </div>
