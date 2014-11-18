@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+
+describe "User" do
+
   def create_new_user
     User.create!(first_name: "David",last_name: "Rivers", email: "aa@aa.com", password: "a",password_confirmation: "a")
   end
@@ -7,9 +10,6 @@ require 'rails_helper'
   def new_user
     User.new(first_name: "David",last_name: "Rivers", email: "aa@aa.com", password: "a",password_confirmation: "a")
   end
-
-describe "User" do
-
 
   it "validates email regardless of case" do
     user = create_new_user
