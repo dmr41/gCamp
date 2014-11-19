@@ -1,0 +1,28 @@
+<%= form_for([@project, @membership], html: {class: "form-horizonal"}) do |f| %>
+
+
+  <div class="container">
+    <div class="well form-inline col-md-5">
+        <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: "Please select.."}, class: "form-control" ) %>
+        <%= f.select(:role, ["Owner", "Member"], {}, {class: "form-control"})%>
+        <%= f.submit "Add New Member",class: "btn btn-primary"%>
+      </div>
+  <% end %>
+    <br>
+  </div>
+<div>
+    <table>
+      <tbody>
+        <% @memberships.each do |membership| %>
+        <tr>
+          <%= form_for([@project, membership])  do |f| %>
+          <td class="col-sm-2"> <%= link_to membership.user.full_name, user_path(membership.user)%></td>
+            <td class="col-sm-1"><%= f.select(:role, ["Owner", "Member"]) %></td>
+            <td class="col-sm-1"><%= f.submit "Update", class: "btn btn-primary "%></td>
+            <td><%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Really?!"}, class: "glyphicon glyphicon-remove" %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

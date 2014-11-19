@@ -1,5 +1,8 @@
+<br>
+<br>
+
 <%if notice !=nil%>
-<div class="alert alert-success">
+<div class=" alert alert-success">
 <%= notice %>
 </div>
 <%end%>
@@ -23,4 +26,5 @@
   <li><%= " #{@project.name}" %></li>
 </ol>
   <p class="shifty"><%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project) %></p>
+  <p class="shifty"><%= link_to "#{@project.memberships.count} Members", project_memberships_path(@project)  %></p>
 <br>
