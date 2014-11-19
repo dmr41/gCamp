@@ -14,8 +14,8 @@
     </div>
   <% end %>
 
-  <div class="container">
-    <div class="well form-inline col-md-5">
+  <div class="container pull-left">
+    <div class="well form-inline col-md-5 ">
         <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: "Please select.."}, class: "form-control col-md-3 pull-left" ) %>
         <%= f.select(:role, ["Owner", "Member"], {}, {class: "form-control col-md-3 pull"})%>
         <%= f.submit "Add New Member",class: "btn btn-primary pull-right"%>
