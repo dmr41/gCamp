@@ -1,4 +1,9 @@
 <div class="container">
+  <%if notice !=nil%>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+  <%end%>
 <h1><%= "My Project: #{@project.name}"%></h1>
 </div>
     <ol class="breadcrumb">

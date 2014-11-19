@@ -27,7 +27,7 @@ class MembershipsController < ApplicationController
   def create
     @membership = @project.memberships.new(membership_params)
       if @membership.save
-        redirect_to project_memberships_path([@project, @membership], notice: 'Membership was successfully created.')
+        redirect_to project_memberships_path(@project, @membership), notice: 'Membership was successfully created.'
       else
         @user_error = "No user selected"
         redirect_to project_memberships_path(@project, @user_error)
@@ -47,7 +47,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @project.memberships.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path(@project, incomplete: "Incomplete" ), notice: 'Membership was successfully destroyed.'
+    redirect_to project_memberships_path(@project, @membership), notice: 'Membership was successfully destroyed.'
   end
 
   private
