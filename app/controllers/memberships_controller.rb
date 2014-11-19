@@ -27,10 +27,11 @@ class MembershipsController < ApplicationController
   def create
     @membership = @project.memberships.new(membership_params)
       if @membership.save
-        redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} was successfully created."
+        redirect_to project_memberships_path(@project, @membership),
+        notice: "#{@membership.user.full_name} was successfully created."
       else
-        @user_error = "No user selected"
-        redirect_to project_memberships_path(@project, @user_error)
+        @memberships = @project.memberships.all
+        render :index
       end
   end
 
@@ -39,7 +40,7 @@ class MembershipsController < ApplicationController
       if @membership.update(membership_params)
         redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} was successfully updated."
       else
-        render :edit
+        render :index
       end
   end
 
