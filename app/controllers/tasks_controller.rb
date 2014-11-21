@@ -5,9 +5,6 @@ class TasksController < ApplicationController
   end
 
 
-  # GET /tasks
-  # GET /tasks.json
-
   def index
     if params[:all_tasks]
       @tasks = @project.tasks.order(params[:sort])
@@ -18,10 +15,25 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1
+
   # GET /tasks/1.json
   def show
     @task = @project.tasks.find(params[:id])
+    @comment = @task.comments.new
+    @comments = @task.comments.all
+  end
+
+  def create_comment
+    @task = @project.tasks.find(params[:id])
+    if current_user
+      @comment = @task.comments.new(params.require(:comment).merge({:user_id => current_user.id}).permit(:description, :user_id, :task_id))
+      @comment.save
+      redirect_to project_task_path()
+    else
+      @comment = @task.comments.new
+      @comments = @task.comments.all
+      render :show
+    end
   end
 
   # GET /tasks/new

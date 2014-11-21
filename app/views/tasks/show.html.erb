@@ -7,7 +7,7 @@
     <h2 class="page-header"><%= @task.description%><%= link_to 'Edit', edit_project_task_path(@project,@task), class: "btn btn-primary pull-right" %></h2>
     <ol class="breadcrumb">
       <li><%=link_to "Projects", projects_path%></li>
-      <li><%= link_to " #{@task.description}", projects_path() %></li>
+      <li><%= link_to " #{@task.description}", project_task_path(@project,@task) %></li>
       <li>Tasks</li>
     </ol>
 
@@ -26,4 +26,22 @@
     </p>
   </p>
   <br></br>
+  <table>
+    <tr>
+
+  <% @comments.each do |cill| %>
+    <table>
+      <tr>
+        <td><%= cill.user.full_name %> <%= cill.description %></td>
+  <% end %>
+      </tr>
+    </table>
+
+    </tr>
+  </table>
+<%= form_for [ @comment], url: { :action => "create_comment" } do |f| %>
+      <%= f.label :description%>
+      <%= f.text_area :description %>
+    <%= f.submit %>
+<% end %>
 </div>

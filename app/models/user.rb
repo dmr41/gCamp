@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :memberships, dependent: :destroy
   has_many :projects, through: :memberships
+  has_many :comments
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, :last_name, presence: true
