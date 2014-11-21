@@ -17,7 +17,6 @@ feature "comments" do
     click_on "Task 1"
     fill_in "Description", with: "howdy"
     click_on "Create Comment"
-    save_and_open_page
     expect(page).to have_content("howdy")
   end
 
