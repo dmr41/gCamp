@@ -2,10 +2,14 @@
   <% if notice == "Task was successfully created." || notice == "Task was successfully destroyed." || notice == "Task was successfully updated."%>
     <p id="notice" class="alert alert-success"><%= notice %></p>
   <%end%>
-  <p>
-    <strong>Description: </strong>
-    <strong class="tsize"><%= @task.description%></strong>
-  </p>
+    <br>
+    <br>
+    <h2 class="page-header"><%= @task.description%><%= link_to 'Edit', edit_project_task_path(@project,@task), class: "btn btn-primary pull-right" %></h2>
+    <ol class="breadcrumb">
+      <li><%=link_to "Projects", projects_path%></li>
+      <li><%= link_to " #{@task.description}", projects_path() %></li>
+      <li>Tasks</li>
+    </ol>
 
   <p>
     <strong>Complete: </strong>
@@ -22,6 +26,4 @@
     </p>
   </p>
   <br></br>
-<%= link_to 'Edit', edit_project_task_path(@project,@task) %> |
-<%= link_to 'Back', project_tasks_path(@project) %>
 </div>
