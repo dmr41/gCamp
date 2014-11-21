@@ -15,12 +15,12 @@ feature "signup" do
     expect(page).to have_content("David")
     expect(page).to have_content("12/12/2020")
     expect(page).to have_content("Task was successfully created.")
-    click_on "Back"
-    click_on "Show"
+    visit project_tasks_path(project)
+    click_on "David"
     expect(page).to have_content("David")
     expect(page).to have_content("12/12/2020")
     expect(page).to have_no_content("Task was successfully created.")
-    click_on "Back"
+    visit project_tasks_path(project)
     click_on "Edit"
     fill_in "Description", with: "Billy"
     fill_in "Date", with: "11/11/2020"

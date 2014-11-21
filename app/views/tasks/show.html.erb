@@ -29,10 +29,10 @@
   <table>
     <tr>
 
-  <% @comments.each do |cill| %>
+  <% @comments.each do |comment| %>
     <table>
       <tr>
-        <td><%= cill.user.full_name %> <%= cill.description %></td>
+        <td><%= comment.user.full_name %> <%= comment.description %></td>
   <% end %>
       </tr>
     </table>
@@ -42,6 +42,6 @@
 <%= form_for [ @comment], url: { :action => "create_comment" } do |f| %>
       <%= f.label :description%>
       <%= f.text_area :description %>
-    <%= f.submit %>
+      <%= f.submit %>
 <% end %>
 </div>
