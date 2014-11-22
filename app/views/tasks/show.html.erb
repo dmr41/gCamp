@@ -4,35 +4,47 @@
   <%end%>
     <br>
     <br>
+    <div class="container-fluid">
     <h2 class="page-header"><%= @task.description%><%= link_to 'Edit', edit_project_task_path(@project,@task), class: "btn btn-info pull-right" %></h2>
+    </div>
     <ol class="breadcrumb">
       <li><%=link_to "Projects", projects_path%></li>
-      <li><%= link_to " #{@task.description}", project_task_path(@project,@task) %></li>
-      <li>Tasks</li>
+      <li><%= link_to " #{@project.name}", project_path(@project) %></li>
+      <li><%= link_to "Tasks", project_tasks_path(@project)%></li>
+      <li><%= "#{@task.description}" %> </li>
     </ol>
 
-  <p>
+  <div class="container">
+
     <strong>Complete: </strong>
     <strong class="tsize"><%=@task.complete%></strong
-  </p>
-
-  <p>
+<br>
+<br>
     <strong>Due Date: </strong>
     <%if @task.date != nil %>
       <strong class="tsize"><%= @task.date.strftime("%m/%d/%Y")%></strong>
     <%else%>
       <strong class="tsize"><%= @task.date%></strong>
     <%end%>
-    </p>
-  </p>
+  </div>
   <br></br>
   <table>
     <tr>
 
     <table class="table">
+      <thead>
+        <tr>
+          <th>
+            <h2>Comments</h2>
+          </th>
+          <th>
+            <h2></h2>
+          </th>
+        </tr>
+      </thead>
   <% @comments.each do |comment| %>
       <tr>
-        <td class="col-md-3"><%= link_to comment.user.full_name, user_path(comment.user.id)%><br><%="#{time_ago_in_words(comment.created_at)}"%></td>
+        <td class="col-md-1"><%= link_to comment.user.full_name, user_path(comment.user.id)%><br><%="#{time_ago_in_words(comment.created_at)}"%></td>
         <td class="col-md-6"><%= comment.description %></td>
   <% end %>
       </tr>
@@ -43,7 +55,7 @@
 <%= form_for [ @comment], url: { :action => "create_comment"} do |f| %>
       <div class="container form-group">
         <div class="col-md-offset-2 col-md-9">
-          <%= f.text_area :description, class: "form-control"  %>
+          <%= f.text_area :description, class: "form-control" %>
         </div>
       </div>
       <div class="container form-group">
