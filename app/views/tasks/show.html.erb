@@ -44,7 +44,11 @@
       </thead>
   <% @comments.each do |comment| %>
       <tr>
-        <td class="col-md-1"><%= link_to comment.user.full_name, user_path(comment.user.id)%><br><%="#{time_ago_in_words(comment.created_at)}"%></td>
+        <td class="col-md-1">
+          <%= link_to comment.user.full_name, user_path(comment.user.id)%>
+          <br>
+          <text class= "text-muted"><%="#{time_ago_in_words(comment.created_at)}"%></text>
+          </td>
         <td class="col-md-6"><%= comment.description %></td>
   <% end %>
       </tr>
