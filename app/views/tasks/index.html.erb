@@ -52,7 +52,7 @@
             <tr>
           <%end%>
           <td class>
-            <%= link_to task.description, project_task_path(@project, task)%>
+            <%= link_to task.description, project_task_path(@project, task)%> <p class="badge badge-info"><%=task.comments.count%></p>
           </td>
           <%if task.complete == true %>
             <td>
@@ -61,7 +61,7 @@
             </td>
           <%elsif%>
             <td>
-              <text class="glyphicon glyphicon-remove">
+              <text class="glyphicon glyphicon-minus">
               <text>
             </td>
           <%end%>
@@ -80,7 +80,7 @@
             <div class="pull-right">
               <%# link_to 'Show', project_task_path(@project, task), class: "btn btn-primary" %>
               <%= link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-warning" %>
-              <%= link_to 'Destroy', project_task_path(@project, task), class: "btn btn-danger",
+              <%= link_to '', project_task_path(@project, task), class: "glyphicon glyphicon-remove",
                                             method: :delete,
                                             data: { confirm: 'Are you sure?' } %>
             </div>
