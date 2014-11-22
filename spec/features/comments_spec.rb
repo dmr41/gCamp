@@ -15,8 +15,8 @@ feature "comments" do
     task = project.tasks.create!(description: "Task 1", date: Date.today)
     visit project_tasks_path(project)
     click_on "Task 1"
-    fill_in "Description", with: "howdy"
-    click_on "Create Comment"
+    fill_in 'comment_description', with: "howdy"
+    click_on "Add Comment"
     expect(page).to have_content("howdy")
   end
 
