@@ -44,24 +44,29 @@
         </tr>
       </thead>
   <% @comments.each do |comment| %>
-      <tr>
-        <td class="col-md-1">
+    <% odd_even = comment.id%2 %>
+    <% if odd_even == 0 %>
+        <tr class="list-group info">
+    <% else %>
+      <tr class="list-group primary">
+    <% end %>
+        <td class="list-group-item col-md-1">
           <%= link_to comment.user.full_name, user_path(comment.user.id)%>
           <br>
             <text class= "text-muted"><%="#{time_ago_in_words(comment.created_at)}"%></text>
         </td>
-        <td class="col-md-6">
-          <%= comment.description %>
+        <td class="list-group-item col-md-6">
+          <%=comment.description %>
         </td>
-  <% end %>
       </tr>
+  <% end %>
     </table>
 
     </tr>
   </table>
 <%= form_for [ @comment], url: { :action => "create_comment"} do |f| %>
       <div class="container-fluid form-group">
-        <div class="col-md-offset-2 col-md-9">
+        <div class="col-md-offset-2 col-md-10 shifty">
           <%= f.text_area :description, class: "form-control" %>
         </div>
       </div>
