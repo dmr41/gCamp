@@ -45,7 +45,7 @@ feature "signup" do
     visit project_tasks_path(project)
     expect(page).to have_content("David")
     expect(page).to have_content("11/11/2020")
-    click_on "Destroy"
+    find(".glyphicon.glyphicon-remove").click
     expect(page).to have_no_content("David")
     expect(page).to have_no_content("11/11/2020")
   end
@@ -87,7 +87,7 @@ feature "signup" do
     expect(page).to have_no_content("11/11/2020")
     expect(page).to have_content("billy")
     expect(page).to have_content("12/12/2020")
-    click_on "Destroy"
+    find(".glyphicon.glyphicon-remove").click
     expect(page).to have_no_content("David")
     expect(page).to have_no_content("11/11/2020")
     expect(page).to have_no_content("billy")
