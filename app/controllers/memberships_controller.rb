@@ -49,7 +49,7 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.find(params[:id])
     temp_name = @membership.user.full_name
     @membership.destroy
-    redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was successfully destroyed."
+    redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
   end
 
   private
