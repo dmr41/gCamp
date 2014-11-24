@@ -29,41 +29,26 @@
   <br>
   <br>
 </div>
-  <table>
-    <tr>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>
+
+
             <h2>Comments</h2>
-          </th>
-          <th>
-            <h2></h2>
-          </th>
-        </tr>
-      </thead>
+
   <% @comments.each do |comment| %>
-    <% odd_even = comment.id%2 %>
-    <% if odd_even == 0 %>
-        <tr class="list-group info">
-    <% else %>
-      <tr class="list-group primary">
-    <% end %>
-        <td class="list-group-item col-md-1">
+        <div class="row">
+
+        <div class="col-sm-2">
           <%= link_to comment.user.full_name, user_path(comment.user.id)%>
           <br>
-            <text class= "text-muted"><%="#{time_ago_in_words(comment.created_at)}"%></text>
-        </td>
-        <td class="list-group-item col-md-6">
+          <text class= "text-muted"><%="#{time_ago_in_words(comment.created_at)} ago"%></text>
+        </div>
+        <div class="col-sm-6">
           <%=comment.description %>
-        </td>
-      </tr>
-  <% end %>
-    </table>
+        </div>
+      </div>
 
-    </tr>
-  </table>
+  <% end %>
+
 <%= form_for [ @comment], url: { :action => "create_comment"} do |f| %>
       <div class="container-fluid form-group">
         <div class="col-md-offset-2 col-md-10 shifty">
