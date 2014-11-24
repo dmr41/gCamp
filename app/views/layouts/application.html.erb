@@ -12,28 +12,21 @@
 </title>
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">
-      <h3>
-        <%= link_to("gCamp", root_path) %>
-        <ul class="nav navbar-brand navbar-right">
-        <% if current_user %>
-        <p class="navadjust">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <%= link_to "gCamp", root_path, class: "navbar-brand" %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
           <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user)%>
-          <%= " | "%>
           <%= link_to "Sign Out", sign_out_path %>
-        </p >
-        <% else %>
-          <p class="navadjust">
-          <%= link_to "Sign Up", sign_up_path %>
-          <%= " | "%>
-          <%= link_to "Sign In", sign_in_path %>
-        </p>
-        <% end %>
-      </ul>
+          <% else %>
+          <li><%= link_to "Sign Up", sign_up_path%></li>
+        <li><%= link_to "Sign In", sign_in_path%></li>
+          <% end %>
+        </ul>
       </div>
-      </h3>
     </nav>
-    </div>
     <div class="outercontainer">
       <%= yield %>
     <hr>
