@@ -27,7 +27,7 @@
   </small>
   <br>
   <br>
-  <p class="shifty"><%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project) %></p>
-  <p class="shifty"><%= link_to "#{@project.memberships.count} Members", project_memberships_path(@project)  %></p>
+  <p class="shifty"><%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %></p>
+  <p class="shifty"><%= link_to pluralize(@project.memberships.count, "Member"), project_memberships_path(@project)  %></p>
 <br>
 </div>
