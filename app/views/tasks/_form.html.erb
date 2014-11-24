@@ -1,6 +1,7 @@
 <%= form_for([@project,@task], {class: "form-horizontal center"}) do |f| %>
 
-<div class="col-md-offset-1"><%= render "layouts/le_mistakes", model: @task %></div>
+  <%= render "layouts/les_mistakes", model: @task%>
+
     <div class="form-group">
       <div class="col-sm-1">
         <%= f.label :description, class: "control-label"%>

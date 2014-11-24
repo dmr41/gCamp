@@ -1,7 +1,7 @@
 
 <%= form_for(@user, {class: "form-horizontal center"}) do |f| %>
 
-<div class="col-md-offset-1 push"><%= render "layouts/le_mistakes", model: @user%></div>
+<%= render "layouts/les_mistakes", model: @user%>
     <div class="form-group">
       <div class="col-sm-2">
         <%= f.label :first_name, class: "control-label"%>
