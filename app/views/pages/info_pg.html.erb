@@ -1,9 +1,33 @@
-  <div class="termbotron top-buffer text-center">
     <div class="container">
       <h1><strong>About</strong></h1>
-      <br></br>
-      <p style="font-size: 150%">This is the about page about this site!</p>
-      <br></br>
-      <%= image_tag"meeting1.png" %>
+      <br>
+      <br>
+      <%= image_tag "meeting1.png", class: "col-md-4" %>
+      <h4 class="col-md-8 ">This is the about page for gCamp. You can get all
+                            the imporant information about this website from this
+                            single page.  The content is really deep and informative.</h4>
+
+      <h4 class="col-md-8 ">If you want more infomation about this page we suggestion you
+          visit the rest of our website.  Please sigin and start a project or
+          two.  - Management</h4>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="container">
+        <%= pluralize(Project.count, "Project")%>
+        <%= pluralize(Membership.count, "Membership")%>
+        <%= pluralize(Task.count, "Task")%>
+        <%=pluralize(Comment.count, "Comment")%>
+      </div>
     </div>
-  </div>

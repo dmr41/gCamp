@@ -29,7 +29,7 @@ class TasksController < ApplicationController
       @comment = @task.comments.new(params.require(:comment).merge({:user_id => current_user.id}).permit(:description, :user_id, :task_id))
       @comment.save
       redirect_to project_task_path()
-    else
+    else 
       @comment = @task.comments.new
       @comments = @task.comments.all
       render :show
