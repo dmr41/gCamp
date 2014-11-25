@@ -34,7 +34,7 @@ feature "projects" do
     expect(page).to have_no_content("The Big Dig")
     expect(page).to have_content("The Little Dig")
     expect(page).to have_content("Project Updated!")
-    click_on "Destroy"
+    click_on "Delete"
     expect(page).to have_content("Project has been destroyed forever!")
   end
 
