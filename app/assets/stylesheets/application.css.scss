@@ -2,22 +2,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+text.pull-right {font-size: 14px;}
+
 div.col-sm-5.attempt{margin-left: -1em;}
+
 tr.below > td {padding-bottom: 1em;}
 
-div.col-md-offset-2.col-md-10.shifty {margin-left: 10em;}
+div.col-md-offset-2.col-md-10.shift {margin-left: 12em;}
 
-div.col-md-offset-2.shifty {margin-left: 11em;}
-
-p.shifty {margin-left: 1em;}
+div.col-md-offset-2.shift {margin-left: 13em;}
 
 p.redalert {color:red;}
 
 div.well.col-md-4.col-md-offset-4 {margin-top: 2em;}
 
 div.whitespce { padding-top:45em}
-
-
 
 p.navadjust {padding-right: 5em;
              margin-top: -0.5em;
@@ -36,15 +35,6 @@ p.navadjust {padding-right: 5em;
 
 .actions.col-sm-offset-2 {padding-left: 13px;}
 
-
-
-
-.test1 {font-size: 14px;
-        padding-right: 2em;}
-
-
-
-
 h3 a {text-decoration: none; color:white;}
 
 .page-header{padding-left: 0px;
@@ -56,13 +46,6 @@ h3 a {text-decoration: none; color:white;}
 
 p strong {font-size: 24px}
 
-.bill {margin-left: 30px;
-       padding-top: 10px;
-       padding-bottom: 10px;}
-
-.btn {margin-left: 0px;
-          margin-top: 0%;}
-
 .navbar {background-color: #000000;
          color: black;
          font-family: "Arial";
@@ -73,7 +56,7 @@ p strong {font-size: 24px}
 .jumbotron {margin-left:  1%;
             margin-right: 1%;
             }
-.termbotron {font-family: "Arial";}
+
 
 .jumbotron {background-color: #EDEDED;
             border-style: solid;
@@ -94,12 +77,6 @@ border-color:black;}
 
 .top-buffer {margin-top: 30px;}
 
-.midpanel{margin-left: auto;
-  margin-right: auto;
-  width: 99%;
-  height: 100%;
-  position: relative;
-}
 
 .btn.btn-danger.repos {margin-left: -10px;}
 .row{position:relative;}
@@ -117,7 +94,7 @@ border-color:black;}
         position: relative;}
 .chckshift {padding-left: 15px;}
 .sorty {padding-right: 20px;}
-.shifty {margin-right: -13px;}
+
 .panel {border-color: black;
         position: relative;}
 
@@ -128,11 +105,7 @@ body {background-color: #EDEDED;}
 
 div h3 {padding-left: 11%}
 
-footer div {margin-left: 2%;}
-
 hr {border: 1px solid #ABABAB;}
-
-
 
 
 /*
