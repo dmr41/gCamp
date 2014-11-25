@@ -2,7 +2,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+div.col-sm-5.attempt{margin-left: -1em;}
 tr.below > td {padding-bottom: 1em;}
 
 div.col-md-offset-2.col-md-10.shifty {margin-left: 10em;}
@@ -17,7 +17,7 @@ div.well.col-md-4.col-md-offset-4 {margin-top: 2em;}
 
 div.whitespce { padding-top:45em}
 
-ol.breadcrumb { margin-left: 1em;}
+
 
 p.navadjust {padding-right: 5em;
              margin-top: -0.5em;
@@ -36,18 +36,14 @@ p.navadjust {padding-right: 5em;
 
 .actions.col-sm-offset-2 {padding-left: 13px;}
 
-.form-group.col-sm-offset-2 {margin-left: 13px;}
 
-.table {margin: 13px;
-        margin-top: -30px;
-        }
+
+
 .test1 {font-size: 14px;
         padding-right: 2em;}
 
-.heading-shift {padding-left: 15px;
-                }
 
-.pull-right.retext {font-size: 14px;}
+
 
 h3 a {text-decoration: none; color:white;}
 
@@ -134,11 +130,9 @@ div h3 {padding-left: 11%}
 
 footer div {margin-left: 2%;}
 
-hr {border: 1px solid #ABABAB;
-    margin-left: 13px;
-    margin-right: -13px;}
+hr {border: 1px solid #ABABAB;}
 
-.col-sm-offset-1 {padding-left: 14px;}
+
 
 
 /*

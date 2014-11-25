@@ -10,24 +10,26 @@
 </div>
 
 
-<h2 class="container">
-  Current Project
+<h2>
+  <%="#{@project.name}"%>
+  <%=link_to "Edit", edit_project_path(@project), class: "btn btn-success pull-right"%>
 </h2>
 <hr>
 <div>
 <ol class="breadcrumb">
   <li><%=link_to "Projects", projects_path%></li>
-  <li><%= " #{@project.name}" %></li>
+  <li><%= "#{@project.name}" %></li>
 </ol>
-  <text class="bobby"><%=@project.name %><text>
-  <small class="pull-right">
-  <%=link_to "Edit", edit_project_path(@project), class: "btn btn-success"%>
-  <%=link_to "Destroy", project_path(@project), class: "btn btn-danger",
-                                              method: :delete %>
-  </small>
-  <br>
-  <br>
-  <p class="shifty"><%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %></p>
-  <p class="shifty"><%= link_to pluralize(@project.memberships.count, "Member"), project_memberships_path(@project)  %></p>
+  <p ><%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %></p>
+  <p ><%= link_to pluralize(@project.memberships.count, "Member"), project_memberships_path(@project)  %></p>
+  <div class="well"><strong><%= "Delete Project" %></strong>
+    <br>
+    <br>
+    <%= "Deleting this project will also delete #{pluralize(@project.memberships.count, "membership")}, #{pluralize(@project.tasks.count, "task")}, and associated comments." %>
+    <br>
+    <br>
+    <%=link_to "Delete", project_path(@project), class: "btn btn-danger",
+                                              method: :delete, data: {confirm: "Are you sure!"} %>
+  </div>
 <br>
 </div>

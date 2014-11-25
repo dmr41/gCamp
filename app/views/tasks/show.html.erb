@@ -1,12 +1,8 @@
-<div class="container-fluid">
+
   <% if notice == "Task was successfully created." || notice == "Task was successfully destroyed." || notice == "Task was successfully updated."%>
     <p id="notice" class="alert alert-success"><%= notice %></p>
   <%end%>
-    <br>
-    <br>
-    <div class="container-fluid">
     <h2 class="page-header"><%= @task.description%><%= link_to 'Edit', edit_project_task_path(@project,@task), class: "btn btn-info pull-right" %></h2>
-    </div>
     <ol class="breadcrumb">
       <li><%=link_to "Projects", projects_path%></li>
       <li><%= link_to " #{@project.name}", project_path(@project) %></li>
@@ -14,7 +10,7 @@
       <li><%= "#{@task.description}" %> </li>
     </ol>
 
-  <div class="container">
+
 
     <strong>Due Date: </strong>
     <%if @task.date != nil %>
@@ -25,10 +21,10 @@
 <br>
     <strong>Complete: </strong>
     <strong class="tsize"><%=@task.complete%></strong
-  </div>
+
   <br>
   <br>
-</div>
+
 
 
 

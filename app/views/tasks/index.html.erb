@@ -1,16 +1,14 @@
 <div class="page-header">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="heading-shift">
+      <h2>
         <%= "Tasks for #{@project.name}"%>
-        <small class="pull-right retext">
-          <text class="sorty">
+        <small class="pull-right">
               <%=link_to_if @booly == true, "All", project_tasks_path(@project, all_tasks: "complete") %> |
               <%=link_to_if @booly == false, "Incomplete", project_tasks_path(@project, incomplete: "incomplete") %>
-          </text>
-            <%= link_to 'Create Task', new_project_task_path(@project), class: "btn btn-info shifty"%>
+            <%= link_to 'Create Task', new_project_task_path(@project), class: "btn btn-info"%>
         </small>
-      </h1>
+      </h2>
       <hr>
     </div>
   </div>

@@ -1,7 +1,7 @@
 
-  <% if @membership.errors.any? %>
 
-    <div class="container-fluid">
+
+  <% if @membership.errors.any? %>
       <div  class="col-sm-6 alert alert-danger">
         <h5><%= pluralize(@membership.errors.count, "error") %> prohibited from this form being saved</h5>
         <ul>
@@ -10,10 +10,16 @@
           <% end %>
         </ul>
       </div>
-    </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
   <% end %>
 
-  <div class="container pull-left">
+
+  <div>
     <div class="well col-md-5 ">
 <%= form_for([@project, @membership], html: {  class: "form-inline" }) do |f| %>
         <div class="form-group">
@@ -29,7 +35,8 @@
   <% end %>
     <br>
   </div>
-<div>
+<br>
+<br>
     <table>
       <tbody>
         <% @memberships.each do |membership| %>
@@ -47,4 +54,4 @@
         <% end %>
       </tbody>
     </table>
-</div>
+    <br>

@@ -25,15 +25,16 @@
             <li><%= link_to "Sign In", sign_in_path%></li>
           <% end %>
         </ul>
-      </div>
+
     </nav>
     <div class="outercontainer">
       <%= yield %>
     <hr>
 
+  </body>
     <footer>
-      <div class="row">
-      <div class="col-sm-5"><%= link_to_unless_current("About", abouty_path) %>
+
+      <div class="col-sm-5 attempt"><%= link_to_unless_current("About", abouty_path) %>
         | <%= link_to_unless_current("Terms", termy_path) %>
         | <%= link_to_unless_current("FAQ", faqy_path) %>
         | <%= link_to_unless_current("Users", users_path) %>
@@ -56,8 +57,6 @@
             <%=image_tag("gschool.png", width: "70em")%>
         <% end %>
       </div>
-    </div>
     </footer>
     </div>
-  </body>
 </html>
