@@ -18,7 +18,6 @@
         <br>
   <% end %>
 
-
   <div>
     <div class="well col-md-5 ">
 <%= form_for([@project, @membership], html: {  class: "form-inline" }) do |f| %>
@@ -38,6 +37,8 @@
 <br>
 <br>
     <table>
+      <br>
+      <br>
       <tbody>
         <% @memberships.each do |membership| %>
         <div>
@@ -50,7 +51,6 @@
           </tr>
           <% end %>
           </div>
-        <br>
         <% end %>
       </tbody>
     </table>

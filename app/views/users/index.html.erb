@@ -36,6 +36,10 @@
           <td>
             <%= link_to("edit", edit_user_path(user))%>
           </td>
+          <td>
+            <%= link_to "delete", user_path(user), method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
         <% end %>
       </tbody>
