@@ -49,7 +49,7 @@
 
   <% end %>
 
-<%= form_for [ @comment], url: { :action => "create_comment"} do |f| %>
+<%= form_for [@task, @comment], url: { :action => "create_comment"} do |f| %>
       <div class="container-fluid form-group">
         <div class="col-md-offset-2 col-md-10 shift">
           <%= f.text_area :description, class: "form-control" %>
