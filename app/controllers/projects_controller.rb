@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_path, notice: "Project has been destroyed forever!"
+    redirect_to projects_path, notice: "Project has been destroyed!"
   end
 
   def project_params

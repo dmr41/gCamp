@@ -73,7 +73,6 @@ class TasksController < ApplicationController
   def destroy
     @task = @project.tasks.find(params[:id])
     @task.destroy
-
     # if @tasks = Task.order(params[:sort])
     if project_tasks_path(@project, params[:incomplete])
       redirect_to project_tasks_path(@project, incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
