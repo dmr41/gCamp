@@ -1,7 +1,6 @@
-class PagesController < ApplicationController
-  skip_before_filter :require_login
-  def index
+class PagesController < MarketingController
 
+  def index
     quote1 = Quote.new
     quote1.phrase = "\"When it is obvious that the goals cannot be reached, don't adjust the goals, adjust the action steps.\""
     quote1.author = "Confucius"

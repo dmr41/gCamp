@@ -15,7 +15,22 @@
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <%= link_to "gCamp", root_path, class: "navbar-brand" %>
+        <%= link_to "gCamp", projects_path, class: "navbar-brand" %>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              My Projects
+              <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+              <%current_user.projects.each do |project| %>
+                <li><%= link_to project.name, project_path(project)%></li>
+              <% end %>
+              <li class="divider"></li>
+              <li><a><%= link_to("New Project", new_project_path) %> </a></li>
+
+            </ul>
+          </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
             <li><%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user)%></li>
@@ -34,10 +49,6 @@
   </body>
     <footer>
 
-      <div class="col-sm-5 attempt"><%= link_to_unless_current("About", abouty_path) %>
-        | <%= link_to_unless_current("Terms", termy_path) %>
-        | <%= link_to_unless_current("FAQ", faqy_path) %>
-      </div>
       <div class="pull-right">
         <%= link_to "https://github.com/dmr41" do %>
             <%=image_tag("github.png", width: "30em")%>
@@ -54,6 +65,10 @@
         <%= link_to "https://students.gschool.it/cohorts/3/class_notes" do %>
             <%=image_tag("gschool.png", width: "70em")%>
         <% end %>
+      </div>
+      <div class="text-center shifty "><%= link_to_unless_current("About", abouty_path) %>
+        | <%= link_to_unless_current("Terms", termy_path) %>
+        | <%= link_to_unless_current("FAQ", faqy_path) %>
       </div>
     </footer>
     </div>

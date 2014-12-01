@@ -1,5 +1,5 @@
-class AuthenticationController < ApplicationController
-  skip_before_filter :require_login
+class AuthenticationController < MarketingController
+  
   def create
     user = User.find_by_email(params[:authentication][:email].downcase)
     if user && user.authenticate(params[:authentication][:password])

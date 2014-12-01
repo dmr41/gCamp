@@ -1,5 +1,5 @@
-class FaqsController < ApplicationController
-  skip_before_filter :require_login
+class FaqsController < MarketingController
+
   def faqpg
 
     query1 = Faq.new
