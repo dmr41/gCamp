@@ -3,7 +3,7 @@ namespace :orphans do
   desc "Delete memberships without user_id values"
   task find: :environment do
     absent_membership_users = Membership.where(user_id: nil).count
-    absent_membership_projects = Membership.where(project_id: nil).delete_all
+    absent_membership_projects = Membership.where(project_id: nil).count
     absent_task_comments = Comment.where(task_id: nil).count
 
     puts "#{absent_membership_users} memberships without a user_id"

@@ -35,7 +35,7 @@ feature "projects" do
     expect(page).to have_content("The Little Dig")
     expect(page).to have_content("Project Updated!")
     click_on "Delete"
-    expect(page).to have_content("Project has been destroyed forever!")
+    expect(page).to have_content("Project has been destroyed!")
   end
 
 
