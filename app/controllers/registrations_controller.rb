@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-
+  skip_before_filter :require_login
   def new
     @user = User.new
   end
