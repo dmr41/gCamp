@@ -4,6 +4,8 @@ class MembershipsController < ApplicationController
 
   def index
     project_owner
+    member = @project.memberships.where(user_id: current_user.id)
+    @role = member[0].role
     @membership = @project.memberships.new
     @memberships = @project.memberships.all
   end
@@ -53,6 +55,12 @@ class MembershipsController < ApplicationController
     temp_name = @membership.user.full_name
     @membership.destroy
     redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
+  end
+
+
+  def role_of_membership
+    member = @project.memberships.where(user_id: current_user.id)
+    @role = member[0].role
   end
 
   private

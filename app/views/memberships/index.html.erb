@@ -12,5 +12,18 @@
       <li><%= link_to " #{@project.name}", project_path(@project) %></li>
       <li>Memberships</li>
     </ol>
+    <% if @role == "Owner" %>
+      <%= render "form" %>
+    <% else %>
 
-<%= render "form" %>
+      <table>
+        <tbody>
+          <% @memberships.each do |membership| %>
+          <tr>
+          <td><%= membership.user.full_name%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <% end %>

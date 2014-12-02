@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
 
   def project_owner
-    Project.find(params[:project_id]).nil?
+    Project.find(params[:project_id])
     @logged_in_user_projects = current_user.projects
     project_array =[]
     @logged_in_user_projects.each do |liup|
@@ -31,6 +31,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1.json
   def show
+
     @task = @project.tasks.find(params[:id])
     @comment = @task.comments.new
     @comments = @task.comments.all
