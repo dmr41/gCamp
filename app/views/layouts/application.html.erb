@@ -64,7 +64,9 @@
             <%=image_tag("gschool.png", width: "70em")%>
         <% end %>
       </div>
-      <div class="text-center shifty "><%= link_to_unless_current("About", abouty_path) %>
+      <div class="text-center shifty ">
+          <%= link_to_unless_current("Home", root_path) %>
+        | <%= link_to_unless_current("About", abouty_path) %>
         | <%= link_to_unless_current("Terms", termy_path) %>
         | <%= link_to_unless_current("FAQ", faqy_path) %>
       </div>

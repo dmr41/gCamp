@@ -34,9 +34,14 @@
       </body>
       <footer>
 
-        <div class="col-sm-5 attempt"><%= link_to_unless_current("About", abouty_path) %>
+        <div class="col-sm-5 attempt"><%= link_to_unless_current("Home", root_path) %>
+          | <%= link_to_unless_current("About", abouty_path) %>
           | <%= link_to_unless_current("Terms", termy_path) %>
           | <%= link_to_unless_current("FAQ", faqy_path) %>
+          <% if current_user %>
+            | <%= link_to("My Projects", projects_path) %>
+          <% end %>
+
         </div>
         <div class="pull-right">
           <%= link_to "https://github.com/dmr41" do %>
