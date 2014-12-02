@@ -28,5 +28,4 @@ feature "signup" do
     expect(page).to have_no_content("d@d.com")
   end
 
-
 end

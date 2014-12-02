@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
 
+
+
+
   def index
     if current_user
       @projects = current_user.projects
@@ -12,7 +15,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    project_owner
   end
 
   def create
@@ -26,7 +29,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
+    project_owner
     if @project.update(project_params)
       redirect_to @project, notice: "Project Updated!"
     else
@@ -35,18 +38,35 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    project_owner
   end
 
   def destroy
-    @project = Project.find(params[:id])
+    project_owner
     @project.destroy
     redirect_to projects_path, notice: "Project has been destroyed!"
   end
 
-  def project_params
-    params.require(:project).permit(:name)
-  end
+
+  private
+
+    def project_params
+      params.require(:project).permit(:name)
+    end
+
+    def project_owner
+      @project = Project.find(params[:id])
+      @logged_in_user_projects = current_user.projects
+      project_array =[]
+      @logged_in_user_projects.each do |liup|
+        project_array << liup.id
+      end
+      if project_array.include? @project.id
+      else
+        render file: 'public/404.html', status: :not_found, layout: false
+      end
+    end
+
 
 
 end
