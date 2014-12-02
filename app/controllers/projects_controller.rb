@@ -1,8 +1,6 @@
 class ProjectsController < ApplicationController
 
 
-
-
   def index
     if current_user
       @projects = current_user.projects
@@ -66,6 +64,7 @@ class ProjectsController < ApplicationController
         render file: 'public/404.html', status: :not_found, layout: false
       end
     end
+
 
 
 
