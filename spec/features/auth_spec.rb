@@ -3,10 +3,6 @@ require 'rails_helper'
 feature "signup" do
 
   scenario "checks successful signup" do
-    visit users_path
-    expect(page).to have_no_content("Bill")
-    expect(page).to have_no_content("bally")
-    expect(page).to have_no_content("baily@baily.com")
     visit root_path
     click_on "Sign Up"
     fill_in "First name", with: "Bill"
@@ -79,17 +75,6 @@ feature "signup" do
     expect(page).to have_content("Sign In")
   end
 
-  scenario "User create and view" do
-    visit root_path
-    click_on "Users"
-    click_on "Create User"
-    fill_in "First name", with: "Bill"
-    fill_in "Last name", with: "bally"
-    fill_in "Email", with: "a@b.com"
-    fill_in "Password", with: "a"
-    fill_in "Password confirmation", with: "a"
-    click_on "Create User"
-    click_on "edit"
-  end
+
 
 end

@@ -1,7 +1,19 @@
 class TasksController < ApplicationController
+    # @tasks = Task.where(params[project_id: @project.id])
+    # @tasks.last.project_id
 
-  before_action do
+  before_action :task_user
+  def task_user
     @project = Project.find(params[:project_id])
+    @logged_in_user_projects = current_user.projects
+    project_array =[]
+    @logged_in_user_projects.each do |liup|
+      project_array << liup.id
+    end
+    if project_array.include? @project.id
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
 
