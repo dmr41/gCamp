@@ -22,10 +22,8 @@ feature "memberships" do
     select("Day Night", from: "membership_user_id")
     click_on "Add New Member"
     expect(page).to have_content("User has already been taken")
-    expect(page).to have_button("Update")
     # find('td/a.glyphicon').click
     find("td/a.glyphicon").click
-    expect(page).to have_no_button("Update")
   end
 
 end

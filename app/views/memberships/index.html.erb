@@ -12,6 +12,23 @@
       <li><%= link_to " #{@project.name}", project_path(@project) %></li>
       <li>Memberships</li>
     </ol>
+
+    <% if @membership.errors.any? %>
+    <div  class="col-sm-6 alert alert-danger">
+      <h5><%= pluralize(@membership.errors.count, "error") %> prohibited from this form being saved</h5>
+      <ul>
+        <% @membership.errors.full_messages.each do |message| %>
+        <li><%= message%></li>
+        <% end %>
+      </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <% end %>
     <% if @role == "Owner" %>
       <%= render "form" %>
     <% else %>
