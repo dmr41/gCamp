@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   before_action :set_proj, only: [:edit, :update, :show, :destroy, :project_owner]
   before_action :project_members, only: [:show, :edit, :update, :destroy]
-  before_action :project_role, only: [:edit]
+  before_action :project_role, only: [:edit, :destroy]
 
   def set_proj
     if Project.where(id: params[:id]).first
@@ -51,8 +51,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
-    redirect_to projects_path, notice: "Project has been destroyed!"
+    if @role == "Owner"
+      @project.destroy
+      redirect_to projects_path, notice: "Project has been destroyed!"
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
   private

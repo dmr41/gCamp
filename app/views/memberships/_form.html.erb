@@ -46,13 +46,13 @@
             <td class="col-sm-1"><%= f.select(:role, ["Member", "Owner"]) %></td>
             <td class="col-sm-1"><%= f.submit "Update", class: "btn btn-primary "%></td>
 
-            <td>
-              <% if membership.role == "Member"%>
-                <%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td>
-              <% elsif  @owner_count == 1%>
-              <% else %>
-                <%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td>
-              <% end %>
+            <!-- <td> -->
+              <%# if membership.role == "Member"%>
+                <!-- <%#= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td> -->
+              <%# elsif  @owner_count == 1%>
+              <%# else %>
+                <td><%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td>
+              <%# end %>
           </tr>
           <% end %>
           </div>

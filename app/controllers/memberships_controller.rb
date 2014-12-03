@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :set_proj
-  before_action :project_members  , only: [:index, :show, :new, :edit, :create, :update, :destroy ]
-  before_action :project_role, only: [:index, :create]
+  before_action :project_members, only: [:index, :show, :new, :edit, :create, :update, :destroy ]
+  before_action :project_role, only: [:index, :create, :destroy]
   before_action :project_owner_count, only: [:index, :destroy]
 
   def set_proj
@@ -50,9 +50,21 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @project.memberships.find(params[:id])
     temp_name = @membership.user.full_name
-    @membership.destroy
-    redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
-  end
+    if @role == 'Member' &&  @membership.user.id == current_user.id
+      @membership.destroy
+      redirect_to projects_path, notice: "#{temp_name} was removed successfully."
+    elsif @role == 'Owner' && @owner_count > 1
+      @membership.destroy
+      redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
+    elsif @role == 'Owner'
+      if @membership.user.id != current_user.id
+         @membership.destroy
+         redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
+       else
+         redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} is the only owner of the project and can't be removed."
+       end
+      end
+    end
 
   private
     def membership_params
