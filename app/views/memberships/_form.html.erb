@@ -16,22 +16,22 @@
         <br>
   <% end %>
 
-  <div>
+  <!-- <div> -->
     <div class="well col-md-5 ">
-<%= form_for([@project, @membership], html: {  class: "form-inline" }) do |f| %>
-        <div class="form-group">
-         <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: "Please select.."}, class: "form-control col-md-3 pull-left" ) %>
-        </div>
-        <div class="form-group">
-          <%= f.select(:role, ["Member", "Owner"], {}, {class: "form-control"})%>
-        </div>
-        <div class="form-group">
-          <%= f.submit "Add New Member",class: "btn btn-primary"%>
+      <%= form_for([@project, @membership], html: {  class: "form-inline" }) do |f| %>
+      <div class="form-group">
+        <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: "Please select.."}, class: "form-control col-md-3 pull-left" ) %>
       </div>
+      <div class="form-group">
+        <%= f.select(:role, ["Member", "Owner"], {}, {class: "form-control"})%>
       </div>
+      <div class="form-group">
+        <%= f.submit "Add New Member",class: "btn btn-primary"%>
+      </div>
+    </div>
   <% end %>
     <br>
-  </div>
+  <!-- </div> -->
 <br>
 <br>
     <table>
@@ -47,8 +47,11 @@
             <td class="col-sm-1"><%= f.submit "Update", class: "btn btn-primary "%></td>
 
             <td>
-              <% unless @owner_count == 1%>
-              <%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td>
+              <% if membership.role == "Member"%>
+                <%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td>
+              <% elsif  @owner_count == 1%>
+              <% else %>
+                <%= link_to "", project_membership_path(@project, membership), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove" %></td>
               <% end %>
           </tr>
           <% end %>

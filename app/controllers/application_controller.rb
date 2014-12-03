@@ -13,32 +13,45 @@ class ApplicationController < ActionController::Base
   def require_login
     unless current_user
       redirect_to sign_in_path, notice: "You must be logged in to access that action"
-    #  render file: 'public/404.html', status: :not_found, layout: false
     end
   end
 
-  def project_owner
-    @logged_in_user_projects = current_user.projects
-    project_array =[]
-    @logged_in_user_projects.each do |liup|
-      project_array << liup.id
-    end
-    if project_array.include? @project.id
+  # def project_members
+  #     @logged_in_user_projects = current_user.projects
+  #     project_array =[]
+  #     @logged_in_user_projects.each do |liup|
+  #       project_array << liup.id
+  #     end
+  #     if project_array.include? @project.id
+  #     else
+  #       render file: 'public/404.html', status: :not_found, layout: false
+  #     end
+  # end
+
+  def project_members
+    if Project.where(id: params[:id]).first || Project.where(id: params[:project_id]).first
+      @logged_in_user_projects = current_user.projects
+      project_array =[]
+      @logged_in_user_projects.each do |liup|
+        project_array << liup.id
+      end
+      if project_array.include? @project.id
+      else
+        render file: 'public/404.html', status: :not_found, layout: false
+      end
     else
       render file: 'public/404.html', status: :not_found, layout: false
     end
   end
 
-  def find_proj
-    @project = Project.find(params[:id])
+  def project_role
+    member = @project.memberships.where(user_id: current_user.id)
+    @role = member[0].role
   end
-
-  def find_members
-    @project = Project.find(params[:project_id])
-  end
-
-  def find_tasks
-    @project = Project.find(params[:project_id])
+  
+  def project_owner_count
+    total_owners = @project.memberships.where(role: "Owner")
+    @owner_count = total_owners.count
   end
 
 

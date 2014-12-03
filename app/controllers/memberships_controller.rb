@@ -1,35 +1,33 @@
 class MembershipsController < ApplicationController
+  before_action :set_proj
+  before_action :project_members  , only: [:index, :show, :new, :edit, :create, :update, :destroy ]
+  before_action :project_role, only: [:index, :create]
+  before_action :project_owner_count, only: [:index, :destroy]
 
-  before_action :project_owner, only: [:index]
+  def set_proj
+    @project = Project.find(params[:project_id])
+  end
 
   def index
-    member = @project.memberships.where(user_id: current_user.id)
-    @role = member[0].role
     @membership = @project.memberships.new
     @memberships = @project.memberships.all
-    total_owners = @project.memberships.where(role: "Owner")
-    @owner_count = total_owners.count
   end
 
   def show
-    project_owner
     @membership = @project.memberships.find(params[:id])
   end
 
 
   def new
-    project_owner
     @membership = @project.memberships.new
   end
 
   def edit
-    project_owner
     @membership = @project.memberships.find(params[:id])
   end
 
 
   def create
-    project_owner
     @membership = @project.memberships.new(membership_params)
       if @membership.save
         redirect_to project_memberships_path(@project, @membership),
@@ -41,7 +39,6 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    project_owner
     @membership = @project.memberships.find(params[:id])
       if @membership.update(membership_params)
         redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} was successfully updated."
@@ -51,37 +48,16 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    project_owner
     @membership = @project.memberships.find(params[:id])
     temp_name = @membership.user.full_name
     @membership.destroy
     redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
   end
 
-
-  def role_of_membership
-    member = @project.memberships.where(user_id: current_user.id)
-    @role = member[0].role
-  end
-
   private
     def membership_params
       params.require(:membership).permit(:role, :user_id, :project_id)
     end
-
-    def project_owner
-      @project = Project.find(params[:project_id])
-      @logged_in_user_projects = current_user.projects
-      project_array =[]
-      @logged_in_user_projects.each do |liup|
-        project_array << liup.id
-      end
-      if project_array.include? @project.id
-      else
-        render file: 'public/404.html', status: :not_found, layout: false
-      end
-    end
-
 
 
 end

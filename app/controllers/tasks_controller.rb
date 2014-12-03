@@ -1,21 +1,11 @@
 class TasksController < ApplicationController
-    # @tasks = Task.where(params[project_id: @project.id])
-    # @tasks.last.project_id
-before_action :project_owner
 
-  def project_owner
+    before_action :set_proj
+    before_action :project_members
+
+  def set_proj
     @project = Project.find(params[:project_id])
-    @logged_in_user_projects = current_user.projects
-    project_array =[]
-    @logged_in_user_projects.each do |liup|
-      project_array << liup.id
-    end
-    if project_array.include? @project.id
-    else
-      render file: 'public/404.html', status: :not_found, layout: false
-    end
   end
-
 
   def index
     if params[:all_tasks]
@@ -28,12 +18,14 @@ before_action :project_owner
   end
 
 
-  # GET /tasks/1.json
   def show
-    #@project = Project.find(params[:project_id])
-    @task = @project.tasks.find(params[:id])
-    @comment = @task.comments.new
-    @comments = @task.comments.all
+    if @project.tasks.where(id: params[:id]).first
+      @task = @project.tasks.find(params[:id])
+      @comment = @task.comments.new
+      @comments = @task.comments.all
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
   def create_comment
@@ -49,18 +41,20 @@ before_action :project_owner
     end
   end
 
-  # GET /tasks/new
   def new
     @task = @project.tasks.new
   end
 
-  # GET /tasks/1/edit
+
   def edit
-    @task = @project.tasks.find(params[:id])
+    if @project.tasks.where(id: params[:id]).first
+      @task = @project.tasks.find(params[:id])
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
-  # POST /tasks
-  # POST /tasks.json
+
   def create
     @task = @project.tasks.new(task_params)
       if @task.save
@@ -70,8 +64,7 @@ before_action :project_owner
       end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
+
   def update
       @task = @project.tasks.find(params[:id])
       if @task.update(task_params)
@@ -81,28 +74,21 @@ before_action :project_owner
       end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
     @task = @project.tasks.find(params[:id])
     @task.destroy
-    # if @tasks = Task.order(params[:sort])
     if project_tasks_path(@project, params[:incomplete])
       redirect_to project_tasks_path(@project, incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
     else
       redirect_to project_tasks_path(@project, all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
     end
-    # elsif @tasks = Task.where(complete: false).order(params[:sort])
-    #   redirect_to tasks_path(incomplete: "Incomplete"), notice: 'Task was successfully destroyed.'
-    # else
-    #   redirect_to tasks_path(all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
-    # end
 
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def task_params
       params.require(:task).permit(:description, :complete, :date)
     end
+
 end
