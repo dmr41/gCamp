@@ -12,7 +12,9 @@
 
 <h2>
   <%="#{@project.name}"%>
+  <% if @role == "Owner" %>
   <%=link_to "Edit", edit_project_path(@project), class: "btn btn-success pull-right"%>
+  <% end %>
 </h2>
 <hr>
 <div>

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 
+  before_action :project_owner, only: [:show]
 
   def index
     if current_user
@@ -14,6 +15,11 @@ class ProjectsController < ApplicationController
 
   def edit
     project_owner
+    member = @project.memberships.where(user_id: current_user.id)
+    @role = member[0].role
+    if @role != "Owner"
+      render "public/404", status: 404, layout: false
+    end
   end
 
   def create
@@ -36,7 +42,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    project_owner
+    # project_owner
+    # if !@project.memberships.where(user_id: current_user.id).first.nil?
+    @role = @project.memberships.where(user_id: current_user.id).first.role
+    # # else
+    # # end
   end
 
   def destroy
@@ -53,16 +63,21 @@ class ProjectsController < ApplicationController
     end
 
     def project_owner
-      @project = Project.find(params[:id])
-      @logged_in_user_projects = current_user.projects
-      project_array =[]
-      @logged_in_user_projects.each do |liup|
-        project_array << liup.id
-      end
-      if project_array.include? @project.id
-      else
-        render file: 'public/404.html', status: :not_found, layout: false
-      end
+       if Project.where(id: params[:id]).first
+         @project = Project.find(params[:id])
+         @logged_in_user_projects = current_user.projects
+         project_array =[]
+         @logged_in_user_projects.each do |liup|
+           project_array << liup.id
+         end
+           if project_array.include? @project.id
+           else
+             render file: 'public/404.html', status: :not_found, layout: false
+           end
+        else
+          render file: 'public/404.html', status: :not_found, layout: false
+        end
+
     end
 
 

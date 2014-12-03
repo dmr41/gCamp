@@ -1,13 +1,14 @@
 class MembershipsController < ApplicationController
 
-
+  before_action :project_owner, only: [:index]
 
   def index
-    project_owner
     member = @project.memberships.where(user_id: current_user.id)
     @role = member[0].role
     @membership = @project.memberships.new
     @memberships = @project.memberships.all
+    total_owners = @project.memberships.where(role: "Owner")
+    @owner_count = total_owners.count
   end
 
   def show

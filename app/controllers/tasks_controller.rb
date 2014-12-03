@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
     # @tasks = Task.where(params[project_id: @project.id])
     # @tasks.last.project_id
-
+before_action :project_owner
 
   def project_owner
-    Project.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     @logged_in_user_projects = current_user.projects
     project_array =[]
     @logged_in_user_projects.each do |liup|
@@ -18,7 +18,6 @@ class TasksController < ApplicationController
 
 
   def index
-    project_owner
     if params[:all_tasks]
       @tasks = @project.tasks.order(params[:sort])
       @booly = false
@@ -31,14 +30,13 @@ class TasksController < ApplicationController
 
   # GET /tasks/1.json
   def show
-
+    #@project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
     @comment = @task.comments.new
     @comments = @task.comments.all
   end
 
   def create_comment
-    project_owner
     @task = @project.tasks.find(params[:id])
     if current_user
       @comment = @task.comments.new(params.require(:comment).merge({:user_id => current_user.id}).permit(:description, :user_id, :task_id))
@@ -53,20 +51,17 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    project_owner
     @task = @project.tasks.new
   end
 
   # GET /tasks/1/edit
   def edit
-    project_owner
     @task = @project.tasks.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    project_owner
     @task = @project.tasks.new(task_params)
       if @task.save
         redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
@@ -78,8 +73,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    project_owner
-    @task = @project.tasks.find(params[:id])
+      @task = @project.tasks.find(params[:id])
       if @task.update(task_params)
         redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
       else
@@ -90,7 +84,6 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-    project_owner
     @task = @project.tasks.find(params[:id])
     @task.destroy
     # if @tasks = Task.order(params[:sort])
