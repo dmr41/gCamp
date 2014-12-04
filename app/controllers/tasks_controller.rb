@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
 
-    before_action :set_proj
+    before_action :set_project
     before_action :project_members
 
-  def set_proj
+  def set_project
     @project = Project.find(params[:project_id])
   end
 

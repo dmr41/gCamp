@@ -1,10 +1,10 @@
 class MembershipsController < ApplicationController
-  before_action :set_proj
+  before_action :set_project
   before_action :project_members, only: [:index, :show, :new, :edit, :create, :update, :destroy ]
   before_action :project_role, only: [:index, :create, :destroy, :update]
   before_action :project_owner_count, only: [:index, :destroy, :update]
 
-  def set_proj
+  def set_project
     @project = Project.find(params[:project_id])
   end
 

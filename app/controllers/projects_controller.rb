@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
 
-  before_action :set_proj, only: [:edit, :update, :show, :destroy, :project_owner]
+  before_action :set_project, only: [:edit, :update, :show, :destroy, :project_owner]
   before_action :project_members, only: [:show, :edit, :update, :destroy]
-  before_action :project_role, only: [:edit, :destroy]
+  before_action :project_role, only: [:edit, :destroy, :update]
 
-  def set_proj
+  def set_project
     if Project.where(id: params[:id]).first
       @project = Project.find(params[:id])
     else
@@ -39,10 +39,14 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params)
-      redirect_to @project, notice: "Project Updated!"
+    if @role != "Owner"
+      render "public/404", status: 404, layout: false
     else
-      render :new
+      if @project.update(project_params)
+        redirect_to @project, notice: "Project Updated!"
+      else
+        render :new
+      end
     end
   end
 
