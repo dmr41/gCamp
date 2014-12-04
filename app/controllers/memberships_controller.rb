@@ -30,7 +30,7 @@ class MembershipsController < ApplicationController
   def create
     @membership = @project.memberships.new(membership_params)
       if @membership.save
-        redirect_to project_memberships_path(@project, @membership),
+        redirect_to project_memberships_path(@project),
         notice: "#{@membership.user.full_name} was successfully created."
       else
         @memberships = @project.memberships.all
@@ -41,10 +41,10 @@ class MembershipsController < ApplicationController
   def update
     @membership = @project.memberships.find(params[:id])
     if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
-      redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} is the only owner remaining."
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} is the only owner remaining."
     else
       if @membership.update(membership_params)
-        redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} was successfully updated."
+        redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
       else
         render :index
       end
@@ -60,7 +60,7 @@ class MembershipsController < ApplicationController
     elsif @role == 'Owner' && @owner_count > 1
       if @membership.user.id != current_user.id
         @membership.destroy
-        redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
+        redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
       else
         @membership.destroy
         redirect_to projects_path
@@ -68,9 +68,9 @@ class MembershipsController < ApplicationController
     elsif @role == 'Owner'
       if @membership.user.id != current_user.id
          @membership.destroy
-         redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} was removed successfully."
+         redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
        else
-         redirect_to project_memberships_path(@project, @membership), notice: "#{temp_name} is the only owner of the project and can't be removed."
+         redirect_to project_memberships_path(@project), notice: "#{temp_name} is the only owner of the project and can't be removed."
        end
       end
     end
