@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def set_user
-    @user = User.find(params[:id])
+    if User.where(id: params[:id]).first
+      @user = User.find(params[:id])
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
   def index
