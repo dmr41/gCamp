@@ -6,6 +6,7 @@ end
 
 
 #gem "activesupport"
+gem 'faker', '~> 1.4.3'
 
 gem "pg"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
