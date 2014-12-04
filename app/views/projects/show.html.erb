@@ -24,6 +24,7 @@
 </ol>
   <p ><%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %></p>
   <p ><%= link_to pluralize(@project.memberships.count, "Member"), project_memberships_path(@project)  %></p>
+  <% if @role == "Owner"%>
   <div class="well"><strong><%= "Delete Project" %></strong>
     <br>
     <br>
@@ -33,5 +34,6 @@
     <%=link_to "Delete", project_path(@project), class: "btn btn-danger",
                                               method: :delete, data: {confirm: "Are you sure?"} %>
   </div>
+  <% end %>
 <br>
 </div>
