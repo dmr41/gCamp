@@ -1,8 +1,8 @@
 class MembershipsController < ApplicationController
   before_action :set_proj
   before_action :project_members, only: [:index, :show, :new, :edit, :create, :update, :destroy ]
-  before_action :project_role, only: [:index, :create, :destroy]
-  before_action :project_owner_count, only: [:index, :destroy]
+  before_action :project_role, only: [:index, :create, :destroy, :update]
+  before_action :project_owner_count, only: [:index, :destroy, :update]
 
   def set_proj
     @project = Project.find(params[:project_id])
@@ -40,11 +40,19 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = @project.memberships.find(params[:id])
+    puts "--------"
+    p @role
+    p @owner_count
+    puts "--------"
+    if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
+      redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} Only one owner left."
+    else
       if @membership.update(membership_params)
         redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} was successfully updated."
       else
         render :index
       end
+    end
   end
 
   def destroy
