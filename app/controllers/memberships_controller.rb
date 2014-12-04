@@ -40,12 +40,8 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = @project.memberships.find(params[:id])
-    puts "--------"
-    p @role
-    p @owner_count
-    puts "--------"
     if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
-      redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} Only one owner left."
+      redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} is the only owner remaining."
     else
       if @membership.update(membership_params)
         redirect_to project_memberships_path(@project, @membership), notice: "#{@membership.user.full_name} was successfully updated."
