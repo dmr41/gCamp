@@ -16,21 +16,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # def project_members
-  #     @logged_in_user_projects = current_user.projects
-  #     project_array =[]
-  #     @logged_in_user_projects.each do |liup|
-  #       project_array << liup.id
-  #     end
-  #     if project_array.include? @project.id
-  #     else
-  #       render file: 'public/404.html', status: :not_found, layout: false
-  #     end
-  # end
-
   def project_members
     if Project.where(id: params[:id]).first || Project.where(id: params[:project_id]).first
-      @logged_in_user_projects = current_user.projects
+      if current_user.admin
+        @logged_in_user_projects = Project.all
+      else
+        @logged_in_user_projects = current_user.projects
+      end
       project_array =[]
       @logged_in_user_projects.each do |liup|
         project_array << liup.id
@@ -45,10 +37,14 @@ class ApplicationController < ActionController::Base
   end
 
   def project_role
-    member = @project.memberships.where(user_id: current_user.id)
-    @role = member[0].role
+    if current_user.admin
+      @role = "Owner"
+    else
+      member = @project.memberships.where(user_id: current_user.id)
+      @role = member[0].role
+    end
   end
-  
+
   def project_owner_count
     total_owners = @project.memberships.where(role: "Owner")
     @owner_count = total_owners.count

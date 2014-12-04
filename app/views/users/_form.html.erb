@@ -50,6 +50,14 @@
           <div class="col-sm-4">
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
+          <br>
+          <br>
+          <% if current_user.admin %>
+          <div class="chckshift col-sm-offset-2">
+            <%= f.check_box :admin%>
+            <%= f.label :admin, class: "control-label"%>
+          </div>
+          <%end%>
           </div>
           <br>
 

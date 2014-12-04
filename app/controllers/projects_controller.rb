@@ -12,7 +12,9 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    if current_user
+    if current_user.admin
+      @projects = Project.all
+    elsif current_user
       @projects = current_user.projects
     end
   end
@@ -51,7 +53,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @role = @project.memberships.where(user_id: current_user.id).first.role
+    if current_user.admin
+      @role = "Owner"
+    else
+      @role = @project.memberships.where(user_id: current_user.id).first.role
+    end
   end
 
   def destroy
