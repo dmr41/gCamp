@@ -7,7 +7,9 @@
 
         <%= "Name: #{@user.first_name} #{@user.last_name}" %>
         <br>
-        <%= "email: #{@user.email}" %>
+        <% if current_user.id == @user.id %>
+          <%= "email: #{@user.email}" %>
+        <% end %>
 
       </div>
     </div>

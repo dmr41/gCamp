@@ -31,20 +31,28 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_path, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.id == @user.id
+      @user.destroy
+      redirect_to users_path, notice: 'User was successfully destroyed.'
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
     end
   end
 
 
   def edit
+    unless current_user.id == @user.id
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
   def update
+    if current_user.id == @user.id
       @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully updated.'
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
 

@@ -28,11 +28,16 @@
             <% name_combo = "#{user.first_name} #{user.last_name}"%>
             <%= link_to "#{name_combo}", user_path(user) %>
           </td>
+          <% if current_user.id == user.id %>
           <td class="col-md-2">
             <%=mail_to(user.email)%>
           </td>
+          <% else %>
+            <td class="col-md-2"></td>
+          <% end %>
           <td class="col-md-7">
           </td>
+          <% if current_user.id == user.id %>
           <td>
             <%= link_to("edit", edit_user_path(user))%>
           </td>
@@ -40,6 +45,10 @@
             <%= link_to "delete", user_path(user), method: :delete,
             data: { confirm: 'Are you sure?' } %>
           </td>
+          <% else %>
+          <td></td>
+          <td></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
