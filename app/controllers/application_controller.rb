@@ -40,14 +40,15 @@ class ApplicationController < ActionController::Base
     if current_user.admin
       @role = "Owner"
     else
-      member = @project.memberships.where(user_id: current_user.id)
-      @role = member[0].role
+      @role = @project.memberships.where(user_id: current_user.id).first.role
     end
   end
 
   def project_owner_count
     total_owners = @project.memberships.where(role: "Owner")
+    total_members = @project.memberships.where(role: "Member")
     @owner_count = total_owners.count
+    @total_member_count = total_owners.count + total_members.count
   end
 
 

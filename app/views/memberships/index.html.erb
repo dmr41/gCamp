@@ -16,7 +16,6 @@
     <% if @role == "Owner" %>
       <%= render "form" %>
     <% else %>
-
       <table>
         <tbody>
           <% @memberships.each do |membership| %>
@@ -30,5 +29,4 @@
           <% end %>
         </tbody>
       </table>
-
     <% end %>

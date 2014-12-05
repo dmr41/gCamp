@@ -23,7 +23,7 @@ feature "memberships" do
     click_on "Add New Member"
     expect(page).to have_content("User has already been taken")
     # find('td/a.glyphicon').click
-    find("td/a.glyphicon").click
+    # find("td/a.glyphicon").click
   end
 
 end
