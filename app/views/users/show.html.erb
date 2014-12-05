@@ -7,7 +7,7 @@
 
         <%= "Name: #{@user.first_name} #{@user.last_name}" %>
         <br>
-        <% if current_user.id == @user.id || current_user.admin %>
+        <% if current_user.id == @user.id || current_user.admin || @common_users.include?(@user.id)%>
           <%= "email: #{@user.email}" %>
         <% end %>
         <br>

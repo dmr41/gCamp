@@ -28,7 +28,7 @@
             <% name_combo = "#{user.first_name} #{user.last_name}"%>
             <%= link_to "#{name_combo}", user_path(user) %>
           </td>
-          <% if current_user.id == user.id || current_user.admin%>
+          <% if current_user.id == user.id || current_user.admin || @common_users.include?(user.id)%>
           <td class="col-md-2">
             <%=mail_to(user.email)%>
           </td>

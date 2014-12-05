@@ -51,5 +51,19 @@ class ApplicationController < ActionController::Base
     @total_member_count = total_owners.count + total_members.count
   end
 
+  def shared_project_members
+    @users = User.all
+    @membership_id_array = current_user.projects.pluck(:project_id)
+    @common_users = []
+    @users.each do |user|
+      user_projects = user.projects.pluck(:project_id)
+      @membership_id_array.each do |member|
+        if user_projects.include?(member)
+          @common_users << user.id
+        end
+      end
+    end
+  end
+  
 
 end

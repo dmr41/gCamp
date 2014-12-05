@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :shared_project_members, only: [:index, :show]
 
   def set_user
     if User.where(id: params[:id]).first
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
   end
 
   def new
