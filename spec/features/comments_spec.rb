@@ -2,6 +2,9 @@ require 'rails_helper'
 require 'spec_helper'
 
 feature "comments" do
+  scenario "test Bryans test" do
+    log_user_in
+  end
 
   scenario "tasks page has a comment button" do
     user = User.create!(first_name: "David", last_name: "Rivers", email: "d@d.com", password: "a", password_confirmation: "a")
