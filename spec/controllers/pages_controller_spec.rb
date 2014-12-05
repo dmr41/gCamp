@@ -16,6 +16,14 @@ require 'rails_helper'
         get :index
         expect(response).to render_template("index")
       end
+
+      it "admin can render Homepage" do
+        #Homepage
+        user = create_super_user
+        session[:user_id] = user.id
+        get :index
+        expect(response).to render_template("index")
+      end
     end
 
       describe "#index" do
@@ -32,6 +40,14 @@ require 'rails_helper'
           get :cond_pg
           expect(response).to render_template("cond_pg")
         end
+
+        it "admin can render Terms page" do
+          #Terms
+          user = create_user
+          session[:user_id] = user.id
+          get :cond_pg
+          expect(response).to render_template("cond_pg")
+        end
       end
 
       describe "#info_pg" do
@@ -42,6 +58,14 @@ require 'rails_helper'
         end
 
         it "logged-in users can render About page" do
+          #About
+          user = create_user
+          session[:user_id] = user.id
+          get :info_pg
+          expect(response).to render_template("info_pg")
+        end
+
+        it "admin can render About page" do
           #About
           user = create_user
           session[:user_id] = user.id
