@@ -159,7 +159,7 @@ describe  ProjectsController do
 
   end
 
-  describe "#destroy"
+  describe "#destroy" do
 
   end
 
