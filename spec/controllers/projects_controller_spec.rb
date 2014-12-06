@@ -135,9 +135,15 @@ describe  ProjectsController do
 
   describe "#create" do
     it "visitors can not create a project without signing up" do
-      membership1 = create_membership
       post :create, :project => { name: "projy"}
       expect(response).to redirect_to(sign_in_path)
+    end
+
+    it "a logged in user without any memberships can create a new project" do
+      user1 = create_user
+      session[:user_id] = user1.id
+      post :create, :project => { name: "projy"}
+      expect(response).to redirect_to(project_tasks_path(Project.all.first))
     end
 
     it "a member can create a new project" do
@@ -156,6 +162,12 @@ describe  ProjectsController do
   end
 
   describe "#update" do
+    it "an owner can update exisiting projects they own" do
+      ownership1 = create_ownership
+      session[:user_id] = ownership1.user.id
+      post :update, id: ownership1.project.id, project: { name: "jehova" }
+      expect(response).to redirect_to(project_path(ownership1.project.id))
+    end
 
   end
 
