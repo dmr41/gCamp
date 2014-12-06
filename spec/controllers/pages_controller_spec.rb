@@ -11,16 +11,16 @@ require 'rails_helper'
 
       it "logged-in users can render Homepage" do
         #Homepage
-        user = create_user
-        session[:user_id] = user.id
+        user1 = create_user
+        session[:user_id] = user1.id
         get :index
         expect(response).to render_template("index")
       end
 
       it "admin can render Homepage" do
         #Homepage
-        user = create_super_user
-        session[:user_id] = user.id
+        user1 = create_super_user
+        session[:user_id] = user1.id
         get :index
         expect(response).to render_template("index")
       end
@@ -35,16 +35,16 @@ require 'rails_helper'
 
         it "logged-in users can render Terms page" do
           #Terms
-          user = create_user
-          session[:user_id] = user.id
+          user1 = create_user
+          session[:user_id] = user1.id
           get :cond_pg
           expect(response).to render_template("cond_pg")
         end
 
         it "admin can render Terms page" do
           #Terms
-          user = create_user
-          session[:user_id] = user.id
+          user1 = create_user
+          session[:user_id] = user1.id
           get :cond_pg
           expect(response).to render_template("cond_pg")
         end
@@ -59,16 +59,16 @@ require 'rails_helper'
 
         it "logged-in users can render About page" do
           #About
-          user = create_user
-          session[:user_id] = user.id
+          user1 = create_user
+          session[:user_id] = user1.id
           get :info_pg
           expect(response).to render_template("info_pg")
         end
 
         it "admin can render About page" do
           #About
-          user = create_user
-          session[:user_id] = user.id
+          user1 = create_user
+          session[:user_id] = user1.id
           get :info_pg
           expect(response).to render_template("info_pg")
         end

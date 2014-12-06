@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       redirect_to users_path, notice: 'User was successfully destroyed.'
     elsif current_user.id == @user.id
       @user.destroy
-      redirect_to users_path, notice: 'User was successfully destroyed.'
+      redirect_to sign_in_path, notice: 'User was successfully destroyed.'
     else
       render file: 'public/404.html', status: :not_found, layout: false
     end
