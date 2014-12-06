@@ -79,7 +79,7 @@ require 'spec_helper'
     describe "#edit" do
       it "visitors can not render edit page of a user" do
         user1 = create_user
-        get :show, :id => "#{user1.id}"
+        get :edit, :id => "#{user1.id}"
         expect(response).to redirect_to(sign_in_path)
       end
 

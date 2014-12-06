@@ -37,6 +37,15 @@ def create_membership(options = {})
   user_id: user.id,)
 end
 
+def create_ownership(options = {})
+  project = options[:project] || create_project
+  user = options[:user] || create_user
+  Membership.create!(
+  role: "Owner",
+  project_id: project.id,
+  user_id: user.id,)
+end
+
 def log_user_in(options = {})
   user = options[:user] || create_user
   visit root_path
