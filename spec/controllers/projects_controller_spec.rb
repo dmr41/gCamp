@@ -87,7 +87,7 @@ describe  ProjectsController do
     it "visitors can not render project edit pages" do
       membership1 = create_membership
       user1 = create_user
-      get :edit, id: "#{membership1.project.id}"
+      get :edit, id: membership1.project.id
       expect(response).to redirect_to(sign_in_path)
     end
 
@@ -95,7 +95,7 @@ describe  ProjectsController do
       membership1 = create_membership
       user1 = create_user
       session[:user_id] = user1.id
-      get :edit, id: "#{membership1.project.id}"
+      get :edit, id: membership1.project.id
       expect(response.status).to eq(404)
     end
 
@@ -103,21 +103,21 @@ describe  ProjectsController do
       membership1 = create_membership
       ownership1 = create_ownership
       session[:user_id] = ownership1.user.id
-      get :edit, id: "#{membership1.project.id}"
+      get :edit, id: membership1.project.id
       expect(response.status).to eq(404)
     end
 
     it "project owners can render project edit page they belong to" do
       ownership1 = create_ownership
       session[:user_id] = ownership1.user.id
-      get :edit, id: "#{ownership1.project.id}"
+      get :edit, id: ownership1.project.id
       expect(response).to render_template(:edit)
     end
 
     it "project members can not render project edit page" do
       membership1 = create_membership
       session[:user_id] = membership1.user.id
-      get :edit, id: "#{membership1.project.id}"
+      get :edit, id: membership1.project.id
       expect(response.status).to eq(404)
     end
 
@@ -126,9 +126,9 @@ describe  ProjectsController do
       ownership1 = create_ownership
       user1 = create_super_user
       session[:user_id] = user1.id
-      get :edit, id: "#{membership1.project.id}"
+      get :edit, id: membership1.project.id
       expect(response).to render_template(:edit)
-      get :edit, id: "#{ownership1.project.id}"
+      get :edit, id: ownership1.project.id
       expect(response).to render_template(:edit)
     end
   end
@@ -162,18 +162,92 @@ describe  ProjectsController do
   end
 
   describe "#update" do
+
+    it "a visitor can not update an exisiting project" do
+      ownership1 = create_ownership
+      membership1 = create_membership
+      user1 = create_user
+      session[:user_id] = user1.id
+      post :update, id: ownership1.project.id, project: { name: "jehova" }
+      expect(response.status).to eq(404)
+      post :update, id: membership1.project.id, project: { name: "messiah" }
+      expect(response.status).to eq(404)
+    end
+
+    it "a member can not update exisiting projects they are members of" do
+      membership1 = create_membership
+      session[:user_id] = membership1.user.id
+      post :update, id: membership1.project.id, project: { name: "jehova" }
+      expect(response.status).to eq(404)
+    end
+
     it "an owner can update exisiting projects they own" do
       ownership1 = create_ownership
       session[:user_id] = ownership1.user.id
       post :update, id: ownership1.project.id, project: { name: "jehova" }
       expect(response).to redirect_to(project_path(ownership1.project.id))
-      
+    end
+
+    it "an owner of one project can not update another owners project" do
+      ownership1 = create_ownership
+      ownership2 = create_ownership
+      session[:user_id] = ownership1.user.id
+      post :update, id: ownership2.project.id, project: { name: "jehova" }
+      expect(response.status).to eq(404)
+    end
+
+    it "admin and update any project" do
+      ownership1 = create_ownership
+      membership1 = create_membership
+      user1 = create_super_user
+      session[:user_id] = user1.id
+      post :update, id: ownership1.project.id, project: { name: "jehova" }
+      expect(response).to redirect_to(project_path(ownership1.project.id))
+      post :update, id: membership1.project.id, project: { name: "messiah" }
+      expect(response).to redirect_to(project_path(membership1.project.id))
     end
 
   end
 
   describe "#destroy" do
+    it "a visitor can't delete a project" do
+      ownership1 = create_ownership
+      user1 = create_user
+      session[:user_id] = user1.id
+      delete :destroy, :id => ownership1.project.id
+      expect(response.status).to eq(404)
+    end
 
+    it "a member can't delete a project" do
+      membership1 = create_membership
+      ownership1 = create_ownership
+      session[:user_id] = membership1.user.id
+      delete :destroy, :id => membership1.project.id
+      expect(response.status).to eq(404)
+      delete :destroy, :id => ownership1.project.id
+      expect(response.status).to eq(404)
+    end
+
+    it "a project owner can only delete a project they are an owner of" do
+      ownership1 = create_ownership
+      ownership2 = create_ownership
+      session[:user_id] = ownership1.user.id
+      delete :destroy, :id => ownership1.project.id
+      expect(response).to redirect_to(projects_path)
+      delete :destroy, :id => ownership2.project.id
+      expect(response.status).to eq(404)
+    end
+
+    it "admin can only delete any projects" do
+      ownership1 = create_ownership
+      membership1 = create_membership
+      user1 = create_super_user
+      session[:user_id] = user1.id
+      delete :destroy, :id => ownership1.project.id
+      expect(response).to redirect_to(projects_path)
+      delete :destroy, :id => membership1.project.id
+      expect(response).to redirect_to(projects_path)
+    end
   end
 
 end
