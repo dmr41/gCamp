@@ -167,6 +167,7 @@ describe  ProjectsController do
       session[:user_id] = ownership1.user.id
       post :update, id: ownership1.project.id, project: { name: "jehova" }
       expect(response).to redirect_to(project_path(ownership1.project.id))
+      
     end
 
   end
