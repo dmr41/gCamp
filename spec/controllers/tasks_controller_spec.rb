@@ -96,14 +96,14 @@ describe  TasksController do
       expect(response.status).to eq(404)
     end
 
-    it "logged in member can render task show page" do
-      membership1 = create_membership
-      task1 = create_task
-      task1[:project_id] = membership1.project.id
-      session[:user_id] = membership1.user.id
-      get :show, {:project_id => task1.project.id, :id => task1.id}
-      expect(response).to render_template(:show)
-    end
+    # it "logged in member can render task show page" do
+    #   membership1 = create_membership
+    #   task1 = create_task
+    #   task1[:project_id] = membership1.project.id
+    #   session[:user_id] = membership1.user.id
+    #   get :show, {:project_id => task1.project.id, :id => task1.id}
+    #   expect(response).to render_template(:show)
+    # end
 
     it "admin can render task show page" do
       task1 = create_task
