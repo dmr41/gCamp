@@ -11,6 +11,7 @@ def create_task(options = {})
   project_id: project.id,)
 end
 
+
 def create_user
   User.create!(
   first_name: Faker::Name.first_name,
