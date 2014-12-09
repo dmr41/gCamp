@@ -56,28 +56,32 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @project.memberships.find(params[:id])
     temp_name = @membership.user.full_name
-    if current_user.admin
-      @membership.destroy
-      redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-    elsif @role == 'Member' &&  @membership.user.id == current_user.id
-      @membership.destroy
-      redirect_to projects_path, notice: "#{temp_name} was removed successfully."
-    elsif @role == 'Owner' && @owner_count > 1
-      if @membership.user.id != current_user.id
+    if current_user
+      if current_user.admin
         @membership.destroy
         redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-      else
+      elsif @role == 'Member' &&  @membership.user.id == current_user.id
         @membership.destroy
-        redirect_to projects_path
-      end
-    elsif @role == 'Owner'
-      if @membership.user.id != current_user.id
-         @membership.destroy
-         redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-       else
-         redirect_to project_memberships_path(@project), notice: "#{temp_name} is the only owner of the project and can't be removed."
-       end
-      end
+        redirect_to projects_path, notice: "#{temp_name} was removed successfully."
+      elsif @role == 'Owner' && @owner_count > 1
+        if @membership.user.id != current_user.id
+          @membership.destroy
+          redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
+        else
+          @membership.destroy
+          redirect_to projects_path
+        end
+      elsif @role == 'Owner'
+        if @membership.user.id == current_user.id
+           @membership.destroy
+           redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
+         else
+           redirect_to project_memberships_path(@project), notice: "#{temp_name} is the only owner of the project and can't be removed."
+         end
+        end
+     else
+       render file: 'public/404.html', status: :not_found, layout: false
+     end
     end
 
   private

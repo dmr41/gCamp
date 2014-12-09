@@ -118,7 +118,73 @@ describe  MembershipsController do
       put :update, :project_id => ownership1.project.id, :id => ownership1.id, :membership => {role: "Owner"}
       expect(response).to redirect_to(project_memberships_path(ownership1.project))
     end
+
+
+    it "logged in owners of a project can not update a member of a project they aren't apart of" do
+      ownership1 = create_ownership
+      ownership2 = create_ownership
+      session[:user_id] = ownership2.user.id
+      put :update, :project_id => ownership1.project.id, :id => ownership1.id, :membership => {role: "Owner"}
+      expect(response.status).to eq(404)
+    end
+
+    it "admin can update a member of a project they aren't apart of" do
+      ownership1 = create_ownership
+      user1 = create_super_user
+      session[:user_id] = user1.id
+      put :update, :project_id => ownership1.project.id, :id => ownership1.id, :membership => {role: "Owner"}
+      expect(response).to redirect_to(project_memberships_path(ownership1.project))
+    end
   end
+
+  describe '#destroy' do
+    it "visitors can't destroy a membership" do
+      membership1 = create_membership
+      delete :destroy, :project_id => membership1.project.id, :id => membership1.id
+      expect(response).to redirect_to(sign_in_path)
+    end
+
+    it "users can't destroy a membership" do
+      membership1 = create_membership
+      user1 = create_user
+      session[:user_id] = user1.id
+      delete :destroy, :project_id => membership1.project.id, :id => membership1.id
+      expect(response.status).to eq(404)
+    end
+
+    it "members can't destroy a membership" do
+      membership1 = create_membership
+      session[:user_id] = membership1.user.id
+      delete :destroy, :project_id => membership1.project.id, :id => membership1.id
+      expect(response).to redirect_to(projects_path)
+    end
+
+    it "owners can destroy a membership" do
+      ownership1 = create_ownership
+      session[:user_id] = ownership1.user.id
+      delete :destroy, :project_id => ownership1.project.id, :id => ownership1.id
+      expect(response).to redirect_to(project_memberships_path(ownership1.project))
+    end
+
+
+    it "owners can't destroy a membership aren't apart of" do
+      ownership1 = create_ownership
+      ownership2 = create_ownership
+      session[:user_id] = ownership2.user.id
+      delete :destroy, :project_id => ownership1.project.id, :id => ownership1.id
+      expect(response.status).to eq(404)
+    end
+
+    it "admin can destroy a membership" do
+      ownership1 = create_ownership
+      user1 = create_super_user
+      session[:user_id] = user1.id
+      delete :destroy, :project_id => ownership1.project.id, :id => ownership1.id
+      expect(response).to redirect_to(project_memberships_path(ownership1.project))
+    end
+  end
+
+
 
 
 end
