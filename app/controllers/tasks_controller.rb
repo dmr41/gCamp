@@ -8,13 +8,14 @@ class TasksController < ApplicationController
   end
 
   def index
-    if params[:all_tasks]
-      @tasks = @project.tasks.order(params[:sort])
-      @booly = false
-    else
-      @tasks = @project.tasks.where(complete: false).order(params[:sort])
-      @booly = true
-    end
+    @tasks = @project.tasks.all
+    # if params[:all_tasks]
+    #   @tasks = @project.tasks.order(params[:sort])
+    #   @booly = false
+    # else
+    #   @tasks = @project.tasks.where(complete: false).order(params[:sort])
+    #   @booly = true
+    # end
   end
 
 
@@ -77,12 +78,12 @@ class TasksController < ApplicationController
   def destroy
     @task = @project.tasks.find(params[:id])
     @task.destroy
-    if project_tasks_path(@project, params[:incomplete])
-      redirect_to project_tasks_path(@project, incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
-    else
-      redirect_to project_tasks_path(@project, all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
-    end
-
+    # if project_tasks_path(@project, params[:incomplete])
+    #   redirect_to project_tasks_path(@project, incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
+    # else
+    #   redirect_to project_tasks_path(@project, all_task: "All tasks" ), notice: 'Task was successfully destroyed.'
+    # end
+    redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed.'
   end
 
   private

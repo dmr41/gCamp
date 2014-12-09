@@ -12,8 +12,8 @@
       <h2>
         <%= "Tasks for #{@project.name}"%>
         <text class="pull-right">
-              <%=link_to_if @booly == true, "All", project_tasks_path(@project, all_tasks: "complete") %> |
-              <%=link_to_if @booly == false, "Incomplete", project_tasks_path(@project, incomplete: "incomplete") %>
+              <!-- <%=link_to_if @booly == true, "All", project_tasks_path(@project, all_tasks: "complete") %> |
+              <%=link_to_if @booly == false, "Incomplete", project_tasks_path(@project, incomplete: "incomplete") %> -->
             <%= link_to 'Create Task', new_project_task_path(@project), class: "btn btn-info"%>
         </text>
       </h2>

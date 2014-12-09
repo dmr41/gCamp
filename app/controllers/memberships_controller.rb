@@ -42,12 +42,14 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.find(params[:id])
     if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} is the only owner remaining."
-    else
+    elsif @role == 'Owner' || current_user.admin
       if @membership.update(membership_params)
         redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
       else
         render :index
       end
+    else @role == 'Member'
+      render file: 'public/404.html', status: :not_found, layout: false
     end
   end
 

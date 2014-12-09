@@ -229,14 +229,14 @@ describe  TasksController do
 
 
   describe '#update' do
-    it "non-logged in visitors can't create a task" do
+    it "non-logged in visitors can't update a task" do
       membership1 = create_membership
       task1 = create_task(:project => membership1.project)
       put :update, :project_id => membership1.project.id, :id => task1.id, :task => {description: "stuff", complete: false}
       expect(response).to redirect_to(sign_in_path)
     end
 
-    it "logged in members of a project can create a task" do
+    it "logged in members of a project can update a task" do
       membership1 = create_membership
       task1 = create_task(:project => membership1.project)
       session[:user_id] = membership1.user.id
@@ -244,7 +244,7 @@ describe  TasksController do
       expect(response).to redirect_to(project_task_path(membership1.project, task1.id))
     end
 
-    it "logged in owners of a project can create a task" do
+    it "logged in owners of a project can update a task" do
       ownership1 = create_ownership
       task1 = create_task(:project => ownership1.project)
       session[:user_id] = ownership1.user.id
@@ -253,7 +253,7 @@ describe  TasksController do
     end
 
 
-    it "admin can create a task anywhere there is s project" do
+    it "admin can update a task anywhere there is s project" do
       ownership1 = create_ownership
       task1 = create_task(:project => ownership1.project)
       user1 = create_super_user
@@ -261,7 +261,60 @@ describe  TasksController do
       put :update, :project_id => ownership1.project.id, :id => task1.id, :task => {description: "stuff", complete: false}
       expect(response).to redirect_to(project_task_path(ownership1.project, task1.id))
     end
-
-
   end
+
+  describe '#destroy' do
+    it "visitors can't destroy a task" do
+      membership1 = create_membership
+      task1 = create_task(:project => membership1.project)
+      user1 = create_user
+      session[:user_id] = user1.id
+      delete :destroy, :project_id => membership1.project.id, :id => task1.id
+      expect(response.status).to eq(404)
+    end
+
+    it "logged in members of a project can destroy a task" do
+      membership1 = create_membership
+      task1 = create_task(:project => membership1.project)
+      session[:user_id] = membership1.user.id
+      delete :destroy, :project_id => membership1.project.id, :id => task1.id
+      expect(response).to redirect_to(project_tasks_path(membership1.project))
+    end
+
+    it "logged in members of can't delete another members tasks" do
+      membership1 = create_membership
+      membership2 = create_membership
+      task1 = create_task(:project => membership1.project)
+      session[:user_id] = membership2.user.id
+      delete :destroy, :project_id => membership1.project.id, :id => task1.id
+      expect(response.status).to eq(404)
+    end
+
+    it "logged in owners of a project can destroy a task" do
+      ownership1 = create_ownership
+      task1 = create_task(:project => ownership1.project)
+      session[:user_id] = ownership1.user.id
+      delete :destroy, :project_id => ownership1.project.id, :id => task1.id
+      expect(response).to redirect_to(project_tasks_path(ownership1.project))
+    end
+
+    it "logged in owners of can't delete another owners tasks" do
+      ownership1 = create_ownership
+      ownership2 = create_ownership
+      task1 = create_task(:project => ownership1.project)
+      session[:user_id] = ownership2.user.id
+      delete :destroy, :project_id => ownership1.project.id, :id => task1.id
+      expect(response.status).to eq(404)
+    end
+
+    it "admin can destroy a task" do
+      ownership1 = create_ownership
+      task1 = create_task(:project => ownership1.project)
+      user1 = create_super_user
+      session[:user_id] = user1.id
+      delete :destroy, :project_id => ownership1.project.id, :id => task1.id
+      expect(response).to redirect_to(project_tasks_path(ownership1.project))
+    end
+  end
+
 end
