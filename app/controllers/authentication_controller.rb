@@ -1,8 +1,8 @@
 class AuthenticationController < MarketingController
 
   def create
-    user = User.find_by_email(params[:authentication][:email].downcase)
-    if user && user.authenticate(params[:authentication][:password])
+    user = User.find_by_email(params[:email].downcase)
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_back_or projects_path
     else
