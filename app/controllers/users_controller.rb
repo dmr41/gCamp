@@ -27,9 +27,9 @@ class UsersController < ApplicationController
       @user.save
       redirect_to users_path, notice: 'User was successfully created.'
     else
-      @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation))
-      @user.save
-      redirect_to users_path, notice: 'User was successfully created.'
+      # @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation))
+      # @user.save
+      redirect_to users_path, notice: 'You can not create new user.'
     end
   end
 
