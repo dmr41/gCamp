@@ -98,11 +98,11 @@ describe  MembershipsController do
     expect(response).to redirect_to(sign_in_path)
   end
   describe '#update' do
-    it "logged in owners of a project can update a member" do
+    it "vistors of a project can not update a member" do
       ownership1 = create_ownership
-      session[:user_id] = ownership1.user.id
+      user1 = create_user
       put :update, :project_id => ownership1.project.id, :id => ownership1.id, :membership => {role: "Owner"}
-      expect(response).to redirect_to(project_memberships_path(ownership1.project))
+      expect(response).to redirect_to(sign_in_path)
     end
 
     it "logged in members of a project can not update a member" do
