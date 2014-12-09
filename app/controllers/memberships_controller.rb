@@ -23,7 +23,7 @@ class MembershipsController < ApplicationController
   end
 
   def edit
-    @membership = @project.memberships.find(params[:id])
+      @membership = @project.memberships.find(params[:id])
   end
 
 

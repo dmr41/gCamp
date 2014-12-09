@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
   # before_action :previous_site
 
   before_action :require_login
-  # rescue_from AccessDenied, with: :record_not_found
-  #
-  #   class AccessDenied < StandardError
-  #    end
 
   def current_user
     User.find_by(id: session[:user_id])
@@ -16,13 +12,37 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  private
+  class AccessDenied < StandardError
+  end
 
-    def require_login
-      unless current_user
-        redirect_to sign_in_path, notice: "You must be logged in to access that action"
-      end
-    end
+  rescue_from AccessDenied, with: :render_404
+
+  def require_login
+    deny_access unless current_user.present?
+  end
+
+  def record_not_found
+    render file: 'public/404', status: :not_found, layout: false
+  end
+
+  def deny_access
+    store_location
+    redirect_to sign_in_path, notice: "Please sign in to access this page."
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  def clear_return_to
+    session[:return_to] = nil
+  end
+
 
     def project_members
       if Project.where(id: params[:id]).first || Project.where(id: params[:project_id]).first
@@ -68,14 +88,5 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-
-
-    # def record_not_found
-    #   render plain: "404 Not Found", status: 404
-    # end
-
-    # def previous_site
-    #   session[:really] = request.env['HTTP_REFERER']
-    # end
 
 end
