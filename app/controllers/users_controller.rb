@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       @user.save
       redirect_to users_path, notice: 'User was successfully created.'
     else
-     @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation))
+     @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token))
      @user.save
       # render :new
      redirect_to users_path, notice: 'You can not create new user.'
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully updated.'
     elsif current_user.id == @user.id
-      @user.update(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation))
+      @user.update(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token))
       redirect_to users_path, notice: 'User was successfully updated.'
     else
       render file: 'public/404.html', status: :not_found, layout: false
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token, :admin)
   end
 
 

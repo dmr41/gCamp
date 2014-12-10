@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204043454) do
+ActiveRecord::Schema.define(version: 20141210180125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 20141204043454) do
     t.string  "password_digest"
     t.string  "first_name"
     t.string  "last_name"
-    t.boolean "admin",           default: false
+    t.boolean "admin",                 default: false
+    t.string  "pivotal_tracker_token"
   end
 
 end

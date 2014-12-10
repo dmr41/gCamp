@@ -50,6 +50,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     diff-lcs (1.2.5)
+    dotenv (1.0.2)
     erubis (2.7.0)
     execjs (2.2.1)
     faker (1.4.3)
@@ -161,6 +162,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   capybara
   coffee-rails (~> 4.0.0)
+  dotenv (~> 1.0.2)
   faker (~> 1.4.3)
   jbuilder (~> 2.0)
   jquery-rails

@@ -50,7 +50,18 @@
           <div class="col-sm-4">
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
+        </div>
           <br>
+          <br>
+        <div class="form-group">
+          <div class="col-sm-2">
+            <%= f.label :pivotal_tracker_token, class: "label-control" %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :pivotal_tracker_token, class: "form-control" %>
+          </div>
+        </div>
+
           <br>
           <% if current_user.admin %>
           <div class="chckshift col-sm-offset-2">
@@ -59,12 +70,7 @@
           </div>
           <%end%>
           </div>
-          <br>
-
-      </div>
         <div class="actions col-sm-offset-2">
-
           <%= f.submit class: 'btn btn-primary'%>
-
         </div>
 <% end %>

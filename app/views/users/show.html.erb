@@ -12,6 +12,11 @@
         <% end %>
         <br>
         <% if current_user.id == @user.id  || current_user.admin %>
+          <% pivtoken_size = @user.pivotal_tracker_token.length - 4 %>
+          <%  pivblanks = "*"*pivtoken_size%>
+          <% new_piv_token = "#{@user.pivotal_tracker_token[0..3]}#{pivblanks}"%>
+          <%=  "Pivotal Tracker Token: #{new_piv_token}" %>
+          <br>
           <%= link_to("edit", edit_user_path(@user))%>
           <% end %>
 
