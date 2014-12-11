@@ -1,51 +1,53 @@
-<% @response_json.each do |project| %>
-    <% if "#{project[:id]}" ==  "#{@test}"%>
-      <% @project_name = "#{project[:name]}"%>
-    <% end %>
-<% end %>
-<div class="page-header">
-  <h1>
-    <%= "Stories for #{@project_name}" %>
-  </h1>
-  <hr>
-</div>
-<table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th class="col-md-6">
-        Story
-      </th>
-      <th class="col-md-2 text-center">
-        Estimate
-      </th>
-      <th class="col-md-2 text-center">
-        Labels
-      </th>
-      <th class="col-md-2 text-center">
-        Current State
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @story_response.each do |response| %>
-    <tr>
-      <td class="col-md-1">
-        <%= link_to("#{response[:name]}", response[:url])%>
-      </td>
-      <td class="col-md-1 text-center">
-        <%= response[:estimate]%>
-      </td>
-      <td class="col-md-2 text-center">
-        <% label_array = [] %>
-        <%response[:labels].each do |label|%>
-            <% label_array << label[:name] %>
-          <% end %>
-          <%= label_array.join(", ") %>
-      </td>
-      <td class="col-md-2 text-center">
-        <%= response[:current_state]%>
-      </td>
-    </tr>
-    <%end%>
-  </tbody>
+<% if current_user.pivotal_tracker_token %>
+  <% @tracker.each do |project| %>
+      <% if "#{project[:id]}" ==  "#{@test}"%>
+        <% @project_name = "#{project[:name]}"%>
+      <% end %>
+  <% end %>
+  <div class="page-header">
+    <h1>
+      <%= "Stories for #{@project_name}" %>
+    </h1>
+    <hr>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-6">
+          Story
+        </th>
+        <th class="col-md-2 text-center">
+          Estimate
+        </th>
+        <th class="col-md-2 text-center">
+          Labels
+        </th>
+        <th class="col-md-2 text-center">
+          Current State
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tracker2.each do |response| %>
+      <tr>
+        <td class="col-md-1">
+          <%= link_to("#{response[:name]}", response[:url])%>
+        </td>
+        <td class="col-md-1 text-center">
+          <%= response[:estimate]%>
+        </td>
+        <td class="col-md-2 text-center">
+          <% label_array = [] %>
+          <%response[:labels].each do |label|%>
+              <% label_array << label[:name] %>
+            <% end %>
+            <%= label_array.join(", ") %>
+        </td>
+        <td class="col-md-2 text-center">
+          <%= response[:current_state]%>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
 </table>
+<% end %>

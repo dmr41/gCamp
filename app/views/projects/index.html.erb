@@ -59,17 +59,19 @@
         </th>
       </tr>
     </thead>
-    <tbody>
-      <% @response_json.each do |pivotal| %>
-      <tr>
-        <td class="col-md-1">
+    <% if current_user.pivotal_tracker_token %>
+      <tbody>
+        <% @tracker.each do |pivotal| %>
+        <tr>
+          <td class="col-md-1">
 
-          <%@pivotal_id = pivotal[:id] %>
+            <%@pivotal_id = pivotal[:id] %>
 
-          <%= link_to("#{pivotal[:name]}", ptracker_path(@pivotal_id))%>
-        </td>
-      </tr>
-      <%end%>
-    </tbody>
+            <%= link_to("#{pivotal[:name]}", ptracker_path(@pivotal_id))%>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
+      <% end %>
     </table>
 </div>
