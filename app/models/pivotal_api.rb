@@ -5,6 +5,7 @@ class PivotalApi
   end
 
   def pivotal_projects(token)
+    return [] if token.nil?
     response = @connection.get do |request|
       request.url "/services/v5/projects"
       request.headers['Content-Type'] = 'application/json'
@@ -14,6 +15,7 @@ class PivotalApi
   end
 
   def pivotal_stories(token, pivotal_project)
+    return [] if token.nil?
     response = @connection.get do |request|
       request.url "/services/v5/projects/#{pivotal_project}/stories"
       request.headers['Content-Type'] = 'application/json'

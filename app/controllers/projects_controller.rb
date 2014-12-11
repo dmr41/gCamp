@@ -18,10 +18,8 @@ class ProjectsController < ApplicationController
     elsif current_user
       @projects = current_user.projects
     end
-    if current_user.pivotal_tracker_token
      tracker_api = PivotalApi.new
      @tracker = tracker_api.pivotal_projects(current_user.pivotal_tracker_token)
-   end
   end
 
   def new
@@ -58,14 +56,10 @@ class ProjectsController < ApplicationController
   end
 
   def show_stories
-    if current_user.pivotal_tracker_token
       tracker_api = PivotalApi.new
       @test = params[:id]
       @tracker = tracker_api.pivotal_projects(current_user.pivotal_tracker_token)
       @tracker2 = tracker_api.pivotal_stories(current_user.pivotal_tracker_token, params[:id] )
-    else
-      render "public/404", status: 404, layout: false
-    end
   end
 
   def show

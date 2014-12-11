@@ -59,7 +59,7 @@
         </th>
       </tr>
     </thead>
-    <% if current_user.pivotal_tracker_token %>
+
       <tbody>
         <% @tracker.each do |pivotal| %>
         <tr>
@@ -72,6 +72,5 @@
         </tr>
         <%end%>
       </tbody>
-      <% end %>
     </table>
 </div>
