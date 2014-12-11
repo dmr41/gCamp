@@ -18,18 +18,7 @@ class ProjectsController < ApplicationController
     elsif current_user
       @projects = current_user.projects
     end
-
-    conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
-
-    response = conn.get do |req|
-      req.url "/services/v5/projects"
-      req.headers['Content-Type'] = 'application/json'
-      req.headers['X-TrackerToken'] = 'b7dc2450f93461bf30cd4fdbd850e1f8'
-    end
-
-    if response.success?
-      @response_json = JSON.parse(response.body, symbolize_names: true)
-    end
+    pivotal_projects
   end
 
   def new
@@ -67,17 +56,8 @@ class ProjectsController < ApplicationController
 
   def show_stories
     @test = params[:id]
-    conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
-
-    response = conn.get do |req|
-      req.url "/services/v5/projects/#{@test}/stories/"
-      req.headers['Content-Type'] = 'application/json'
-      req.headers['X-TrackerToken'] = 'b7dc2450f93461bf30cd4fdbd850e1f8'
-    end
-
-    if response.success?
-      @response_json = JSON.parse(response.body, symbolize_names: true)
-    end
+    pivotal_projects
+    pivotal_story_parser
   end
 
   def show
@@ -97,20 +77,33 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # def pivotal_parser
-  #   conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
-  #
-  #   response = conn.get do |req|
-  #     req.url "/services/v5/projects"
-  #     req.headers['Content-Type'] = 'application/json'
-  #     req.headers['X-TrackerToken'] = 'b7dc2450f93461bf30cd4fdbd850e1f8'
-  #   end
-  #
-  #   if response.success?
-  #     @response_json = JSON.parse(response.body, symbolize_names: true)
-  #   end
-  # end
+  def pivotal_projects
+    conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
 
+    response = conn.get do |req|
+      req.url "/services/v5/projects"
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['X-TrackerToken'] = 'b7dc2450f93461bf30cd4fdbd850e1f8'
+    end
+
+    if response.success?
+      @response_json = JSON.parse(response.body, symbolize_names: true)
+    end
+  end
+
+  def pivotal_story_parser
+    conn = Faraday.new(:url => 'https://www.pivotaltracker.com')
+
+    response = conn.get do |req|
+      req.url "/services/v5/projects/#{@test}/stories/"
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['X-TrackerToken'] = 'b7dc2450f93461bf30cd4fdbd850e1f8'
+    end
+
+    if response.success?
+      @story_response = JSON.parse(response.body, symbolize_names: true)
+    end
+  end
 
   private
 
