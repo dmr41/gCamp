@@ -5,7 +5,6 @@
     <%= notice %>
   </div>
 <%end%>
-
 <div class="page-header">
   <h1>
     Projects
@@ -46,3 +45,29 @@
       <%end%>
     </tbody>
   </table>
+  <div class="page-header">
+    <h1>
+      Pivotal Tracker Projects
+    </h1>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-1">
+          Projects
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @response_json.each do |pivotal| %>
+      <tr>
+        <td class="col-md-1">
+
+          <%@pivotal_id = pivotal[:id] %>
+
+          <%= link_to("#{pivotal[:name]}", ptracker_path(@pivotal_id))%>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+    </table>

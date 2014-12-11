@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h1>
+    <%= "Stories for #{}" %>
+  </h1>
+  <hr>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-md-6">
+        Story
+      </th>
+      <th class="col-md-2 text-center">
+        Estimate
+      </th>
+      <th class="col-md-2 text-center">
+        Labels
+      </th>
+      <th class="col-md-2 text-center">
+        Current State
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @response_json.each do |response| %>
+    <tr>
+      <td class="col-md-1">
+        <%= link_to("#{response[:name]}", response[:url])%>
+      </td>
+      <td class="col-md-1 text-center">
+        <%= response[:estimate]%>
+      </td>
+      <td class="col-md-2 text-center">
+        <%response[:labels].each do |label|%>
+          <%= label[:name] %>
+          <% end %>
+      </td>
+      <td class="col-md-2 text-center">
+        <%= response[:current_state]%>
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

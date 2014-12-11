@@ -8,7 +8,9 @@ end
 #gem "activesupport"
 gem 'faker', '~> 1.4.3'
 
-gem 'pry'
+gem 'faraday'
+
+# gem 'pry'
 gem 'mail', '~> 2.6.3'
 gem "pg"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -41,6 +43,7 @@ gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'dotenv', '~> 1.0.2'
   gem 'rspec-rails'
   gem 'capybara'
