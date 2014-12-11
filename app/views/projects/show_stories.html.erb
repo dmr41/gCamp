@@ -36,9 +36,11 @@
         <%= response[:estimate]%>
       </td>
       <td class="col-md-2 text-center">
+        <% label_array = [] %>
         <%response[:labels].each do |label|%>
-          <%= label[:name] %>
+            <% label_array << label[:name] %>
           <% end %>
+          <%= label_array.join(", ") %>
       </td>
       <td class="col-md-2 text-center">
         <%= response[:current_state]%>
