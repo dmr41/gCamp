@@ -9,7 +9,7 @@ feature "projects" do
     fill_in "Email", with: "d@d.com"
     fill_in "Password", with: "a"
     click_on "Sign in"
-    click_on "Create project"
+    click_on "New project"
     click_on "Create Project"
     expect(page).to have_content("Name can't be blank")
   end
@@ -22,7 +22,7 @@ feature "projects" do
     fill_in "Password", with: "a"
     click_on "Sign in"
     expect(page).to have_no_content("The Big Dig")
-    click_on "Create project"
+    click_on "New project"
     fill_in "Name", with: "The Big Dig"
     click_on "Create Project"
     expect(page).to have_content("The Big Dig")
@@ -40,7 +40,7 @@ feature "projects" do
     fill_in "Password", with: "a"
     click_on "Sign in"
     expect(page).to have_no_content("The Big Dig")
-    click_on "Create project"
+    click_on "New project"
     fill_in "Name", with: "The Big Dig"
     click_on "Create Project"
     find('ol li a', text: 'The Big Dig').click

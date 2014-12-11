@@ -13,7 +13,7 @@ feature "comments" do
     fill_in "Email", with: "d@d.com"
     fill_in "Password", with: "a"
     click_on "Sign in"
-    click_on "Create project"
+    click_on "New project"
     fill_in "Name", with: "billy"
     click_on "Create Project"
     click_on "Create Task"

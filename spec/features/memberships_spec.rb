@@ -12,7 +12,7 @@ feature "memberships" do
     fill_in "Email", with: "day@night.com"
     fill_in "Password", with: "sun"
     click_on "Sign in"
-    click_on "Create project"
+    click_on "New project"
     fill_in "Name", with: "Biggy"
     click_on "Create Project"
     expect(page).to have_content("Project Created!")
