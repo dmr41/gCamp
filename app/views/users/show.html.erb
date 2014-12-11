@@ -1,15 +1,23 @@
 
   <div class="page-header">
-    <h2>User</h2>
-    <br>
+    <h2><%= "#{@user.first_name} #{@user.last_name}"%>
+      <%if current_user.id == @user.id  || current_user.admin%>
+        <%= link_to("edit", edit_user_path(@user), class: "btn btn-info pull-right")%>
+        <% end %>
+    </h2>
+  </div>
     <div class="row">
       <div class="col-md-12">
-
-        <%= "Name: #{@user.first_name} #{@user.last_name}" %>
+        <%= "First name: #{@user.first_name}"%>
+        <br>
+        <br>
+        <%= "Last name: #{@user.last_name}"%>
+        <br>
         <br>
         <% if current_user.id == @user.id || current_user.admin || @common_users.include?(@user.id)%>
           <%= "email: #{@user.email}" %>
         <% end %>
+        <br>
         <br>
         <% if current_user.id == @user.id  || current_user.admin %>
            <% unless @user.pivotal_tracker_token.nil?%>
@@ -19,9 +27,7 @@
           <%=  "Pivotal Tracker Token: #{new_piv_token}" %>
           <% end %>
           <br>
-          <%= link_to("edit", edit_user_path(@user))%>
           <% end %>
 
       </div>
     </div>
-  </div>
