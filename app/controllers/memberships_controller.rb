@@ -41,7 +41,7 @@ class MembershipsController < ApplicationController
   def update
     @membership = @project.memberships.find(params[:id])
     if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
-      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} is the only owner remaining."
+       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} is the only owner remaining."
     elsif @role == 'Owner' || current_user.admin
       if @membership.update(membership_params)
         redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
@@ -72,7 +72,7 @@ class MembershipsController < ApplicationController
           redirect_to projects_path
         end
       elsif @role == 'Owner'
-        if @membership.user.id == current_user.id
+        if @membership.user.id == current_user.id && @owner_count != 1
            @membership.destroy
            redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
          else

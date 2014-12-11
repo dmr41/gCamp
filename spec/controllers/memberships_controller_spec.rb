@@ -161,13 +161,15 @@ describe  MembershipsController do
 
     it "owners can destroy a membership" do
       ownership1 = create_ownership
+      owner_count = Membership.where(role: "Owner").count
       session[:user_id] = ownership1.user.id
       delete :destroy, :project_id => ownership1.project.id, :id => ownership1.id
-      expect(response).to redirect_to(project_memberships_path(ownership1.project))
+
+      expect(Membership.where(role: "Owner").count).to eq(owner_count)
     end
 
 
-    it "owners can't destroy a membership aren't apart of" do
+    it "owners can't destroy a membership they aren't apart of" do
       ownership1 = create_ownership
       ownership2 = create_ownership
       session[:user_id] = ownership2.user.id
