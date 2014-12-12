@@ -75,6 +75,9 @@ class MembershipsController < ApplicationController
         if @membership.user.id == current_user.id && @owner_count != 1
            @membership.destroy
            redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
+         elsif @membership.user.id != current_user.id && @owner_count == 1
+           @membership.destroy
+           redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
          else
            redirect_to project_memberships_path(@project), notice: "#{temp_name} is the only owner of the project and can't be removed."
          end
