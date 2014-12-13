@@ -91,7 +91,7 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.find(params[:id])
     @temp_name = @membership.user.full_name
     if current_user
-      if single_owner_or_membership || multiple_owner
+      if single_owner || multiple_owner
         @membership.destroy
         redirect_to project_memberships_path(@project), notice: "#{@temp_name} was removed successfully."
       elsif self_destroy
@@ -126,8 +126,10 @@ class MembershipsController < ApplicationController
     end
   end
 
-  def single_owner_or_membership
-    if  @role == 'Owner' && @membership.user.id == current_user.id && @owner_count != 1
+  def single_owner
+    if  @role == 'Owner' && @membership.user.id != current_user.id && @owner_count != 1
+      return true
+    elsif  @role == 'Owner' && @membership.user.id != current_user.id && @owner_count == 1
       return true
     else
     end
