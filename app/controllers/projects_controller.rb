@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
   def edit
     if @role != "Owner"
-      render "public/404", status: 404, layout: false
+      raise AccessDenied
     end
   end
 
@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @role != "Owner"
-      render "public/404", status: 404, layout: false
+      raise AccessDenied
     else
       if @project.update(project_params)
         redirect_to @project, notice: "Project Updated!"
@@ -75,7 +75,8 @@ class ProjectsController < ApplicationController
       @project.destroy
       redirect_to projects_path, notice: "Project has been destroyed!"
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
+      #render file: 'public/404.html', status: :not_found, layout: false
     end
   end
 

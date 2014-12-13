@@ -48,7 +48,7 @@ class MembershipsController < ApplicationController
       @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated."
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 

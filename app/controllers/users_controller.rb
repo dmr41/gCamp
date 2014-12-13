@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if User.where(id: params[:id]).first
       @user = User.find(params[:id])
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
@@ -29,7 +29,6 @@ class UsersController < ApplicationController
     else
      @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token))
      @user.save
-      # render :new
      redirect_to users_path, notice: 'You can not create new user.'
     end
   end
@@ -42,13 +41,13 @@ class UsersController < ApplicationController
       @user.destroy
       redirect_to sign_in_path, notice: 'User was successfully destroyed.'
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
   def edit
     unless current_user.id == @user.id || current_user.admin
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
@@ -60,7 +59,7 @@ class UsersController < ApplicationController
       @user.update(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token))
       redirect_to users_path, notice: 'User was successfully updated.'
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 

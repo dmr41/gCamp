@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   class AccessDenied < StandardError
   end
 
-  rescue_from AccessDenied, with: :render_404
+  rescue_from AccessDenied, with: :record_not_found
 
   def require_login
     deny_access unless current_user.present?
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   def logged_users_have_projects
     if @logged_in_user_projects.include? @project.id
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
       pluck_user_project_ids
       logged_users_have_projects
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 

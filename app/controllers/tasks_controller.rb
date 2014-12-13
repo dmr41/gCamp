@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       @comment = @task.comments.new
       @comments = @task.comments.all
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     if @project.tasks.where(id: params[:id]).first
       @task = @project.tasks.find(params[:id])
     else
-      render file: 'public/404.html', status: :not_found, layout: false
+      raise AccessDenied
     end
   end
 
