@@ -53,40 +53,6 @@ class MembershipsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @membership = @project.memberships.find(params[:id])
-  #   temp_name = @membership.user.full_name
-  #   if current_user
-  #     if current_user.admin
-  #       @membership.destroy
-  #       redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-  #     elsif @role == 'Member' &&  @membership.user.id == current_user.id
-  #       @membership.destroy
-  #       redirect_to projects_path, notice: "#{temp_name} was removed successfully."
-  #     elsif @role == 'Owner' && @owner_count > 1
-  #       if @membership.user.id != current_user.id
-  #         @membership.destroy
-  #         redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-  #       else
-  #         @membership.destroy
-  #         redirect_to projects_path
-  #       end
-  #     elsif @role == 'Owner'
-  #       if @membership.user.id == current_user.id && @owner_count != 1
-  #          @membership.destroy
-  #          redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-  #       elsif @membership.user.id != current_user.id && @owner_count == 1
-  #          @membership.destroy
-  #          redirect_to project_memberships_path(@project), notice: "#{temp_name} was removed successfully."
-  #       else
-  #          redirect_to project_memberships_path(@project), notice: "#{temp_name} is the only owner of the project and can't be removed."
-  #       end
-  #     end
-  #    else
-  #      render file: 'public/404.html', status: :not_found, layout: false
-  #    end
-  # end
-
   def destroy
     @membership = @project.memberships.find(params[:id])
     @temp_name = @membership.user.full_name
@@ -104,6 +70,7 @@ class MembershipsController < ApplicationController
   end
 
   private
+
     def membership_params
       params.require(:membership).permit(:role, :user_id, :project_id)
     end
@@ -117,19 +84,17 @@ class MembershipsController < ApplicationController
     end
   end
 
-  def self_destroy
-    if @role == 'Owner' && @owner_count > 1 && @membership.user.id == current_user.id
-      return true
-    elsif @role == 'Member' && @membership.user.id == current_user.id
+  def single_owner
+    if  @role == 'Owner' && @membership.user.id != current_user.id && @owner_count == 1
       return true
     else
     end
   end
 
-  def single_owner
-    if  @role == 'Owner' && @membership.user.id != current_user.id && @owner_count != 1
+  def self_destroy
+    if @role == 'Owner' && @owner_count > 1 && @membership.user.id == current_user.id
       return true
-    elsif  @role == 'Owner' && @membership.user.id != current_user.id && @owner_count == 1
+    elsif @role == 'Member' && @membership.user.id == current_user.id
       return true
     else
     end
