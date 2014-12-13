@@ -40,7 +40,7 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = @project.memberships.find(params[:id])
-    if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
+    if single_owner_current_user
        redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} is the only owner remaining."
     elsif @role == 'Owner' || current_user.admin
       if @membership.update(membership_params)
@@ -48,7 +48,7 @@ class MembershipsController < ApplicationController
       else
         render :index
       end
-    else @role == 'Member'
+    else
       render file: 'public/404.html', status: :not_found, layout: false
     end
   end
@@ -91,6 +91,13 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def single_owner_current_user
+    if @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
+      return true
+    end
+  end
+
+       @role == 'Owner' && @owner_count == 1 && @membership.user.id == current_user.id
   def self_destroy
     if @role == 'Owner' && @owner_count > 1 && @membership.user.id == current_user.id
       return true
