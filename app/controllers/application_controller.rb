@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   # before_action :previous_site
-  
+
   before_action :require_login
 
   def current_user
@@ -43,51 +43,56 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
+  def pluck_user_project_ids
+    if current_user.admin
+      @logged_in_user_projects = Project.pluck(:id)
+    else
+      @logged_in_user_projects = current_user.projects.pluck(:id)
+    end
+  end
 
-    def project_members
-      if Project.where(id: params[:id]).first || Project.where(id: params[:project_id]).first
-        if current_user.admin
-          @logged_in_user_projects = Project.pluck(:id)
-        else
-          @logged_in_user_projects = current_user.projects.pluck(:id)
+  def logged_users_have_projects
+    if @logged_in_user_projects.include? @project.id
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
+  end
+
+  def project_members
+    if Project.where(id: params[:id]).first || Project.where(id: params[:project_id]).first
+      pluck_user_project_ids
+      logged_users_have_projects
+    else
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
+  end
+
+  def project_role
+    if current_user.admin
+      @role = "Owner"
+    else
+      @role = @project.memberships.where(user_id: current_user.id).first.role
+    end
+  end
+
+  def project_owner_count
+    total_owners = @project.memberships.where(role: "Owner")
+    total_members = @project.memberships.where(role: "Member")
+    @owner_count = total_owners.count
+    @total_member_count = total_owners.count + total_members.count
+  end
+
+  def shared_project_members
+    @users = User.all
+    @membership_id_array = current_user.projects.pluck(:project_id)
+    @common_users = []
+    @users.each do |user|
+      user_projects = user.projects.pluck(:project_id)
+      @membership_id_array.each do |member|
+        if user_projects.include?(member)
+          @common_users << user.id
         end
-        if @logged_in_user_projects.include? @project.id
-        else
-          render file: 'public/404.html', status: :not_found, layout: false
-        end
-      else
-        render file: 'public/404.html', status: :not_found, layout: false
       end
     end
-
-    def project_role
-      if current_user.admin
-        @role = "Owner"
-      else
-        @role = @project.memberships.where(user_id: current_user.id).first.role
-      end
-    end
-
-    def project_owner_count
-      total_owners = @project.memberships.where(role: "Owner")
-      total_members = @project.memberships.where(role: "Member")
-      @owner_count = total_owners.count
-      @total_member_count = total_owners.count + total_members.count
-    end
-
-    def shared_project_members
-      @users = User.all
-      @membership_id_array = current_user.projects.pluck(:project_id)
-      @common_users = []
-      @users.each do |user|
-        user_projects = user.projects.pluck(:project_id)
-        @membership_id_array.each do |member|
-          if user_projects.include?(member)
-            @common_users << user.id
-          end
-        end
-      end
-    end
-
-
+  end
 end

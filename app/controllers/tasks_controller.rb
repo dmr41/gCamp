@@ -2,6 +2,7 @@ class TasksController < ApplicationController
 
   before_action :set_project
   before_action :project_members
+  before_action :find_single_task, only: [:destroy, :update]
 
   def set_project
     @project = Project.find(params[:project_id])
@@ -21,7 +22,7 @@ class TasksController < ApplicationController
 
   def show
     if @project.tasks.where(id: params[:id]).first
-      @task = @project.tasks.find(params[:id])
+      find_single_task
       @comment = @task.comments.new
       @comments = @task.comments.all
     else
@@ -67,16 +68,14 @@ class TasksController < ApplicationController
 
 
   def update
-      @task = @project.tasks.find(params[:id])
-      if @task.update(task_params)
-        redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
-      else
-        render :edit
-      end
+    if @task.update(task_params)
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @task = @project.tasks.find(params[:id])
     @task.destroy
     # if project_tasks_path(@project, params[:incomplete])
     #   redirect_to project_tasks_path(@project, incomplete: "Incomplete" ), notice: 'Task was successfully destroyed.'
@@ -88,8 +87,12 @@ class TasksController < ApplicationController
 
   private
 
-    def task_params
-      params.require(:task).permit(:description, :complete, :date)
-    end
+  def task_params
+    params.require(:task).permit(:description, :complete, :date)
+  end
+
+  def find_single_task
+    @task = @project.tasks.find(params[:id])
+  end
 
 end
