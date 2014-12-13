@@ -2,6 +2,10 @@ require 'rails_helper'
 require 'spec_helper'
   describe UsersController do
 
+    before do
+      cleanup_databases
+    end
+    
     describe "index" do
       it "non-logged in user can not render index" do
         get :index

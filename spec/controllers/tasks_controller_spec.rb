@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe  TasksController do
 
+  before do
+    cleanup_databases
+  end
+  
   describe '#index' do
     it "non logged in user can't access a tasks index page even with correct project id" do
       ownership1 = create_ownership

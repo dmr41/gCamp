@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe  MembershipsController do
 
+  before do
+    cleanup_databases
+  end
+
   describe '#index' do
     it "non logged in user can't access memberships index for a project" do
       membership1 = create_membership

@@ -1,6 +1,11 @@
 require 'rails_helper'
 
+
   describe AuthenticationController do
+
+    before do
+      cleanup_databases
+    end
 
     describe "#new" do
       it " a new view is displayed for for user to log in" do

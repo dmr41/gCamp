@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe FaqsController do
 
+  before do
+    cleanup_databases
+  end
+
   describe "#faqpg" do
 
     it "non-logged-in users can render FAQ page" do

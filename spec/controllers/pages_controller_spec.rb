@@ -2,6 +2,10 @@ require 'rails_helper'
 
   describe PagesController do
 
+    before do
+      cleanup_databases
+    end
+    
     describe "#index" do
       it "non-logged-in users can render Homepage" do
         #Homepage

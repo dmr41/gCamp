@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe  ProjectsController do
 
+  before do
+    cleanup_databases
+  end
+  
   describe '#index' do
     it "non-logged in user can not render index" do
       get :index
