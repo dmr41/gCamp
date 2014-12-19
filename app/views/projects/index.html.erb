@@ -5,13 +5,16 @@
     <%= notice %>
   </div>
 <%end%>
-<div class="page-header">
+<%= page_header "Projects" do%>
+  <%=link_to "New project", new_project_path, class: "btn btn-info"  %>
+<% end %>
+<!-- <div class="page-header">
+    <div class="pull-right">
+    <%=link_to "New project", new_project_path, class: "btn btn-info"  %>
+  </div>
   <h1>
     Projects
-    <small class="pull-right">
-    <%=link_to "New project", new_project_path, class: "btn btn-info"  %>
-    </small>
-  </h1>
+  </h1> -->
   <hr>
 <!-- </div> -->
   <table class="table">
@@ -45,10 +48,8 @@
     </tbody>
   </table>
 </div>
-  <div class="page-header">
-    <h1>
-      Pivotal Tracker Projects
-    </h1>
+<%= page_header "Pivotal Tracker Projects" do%>
+<% end %>
     <hr>
   <!-- </div> -->
   <table class="table">
