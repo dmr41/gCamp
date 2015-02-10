@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../../favicon.ico">
     <title><%= "gCamp #{content_for(:title)}"%></title>
-    <!-- <title>gCamp</title> -->
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -57,15 +56,8 @@
 
         <%= link_to "https://www.linkedin.com/profile/view?id=127016445&trk=nav_responsive_tab_profile" do %>
             <%=image_tag("linkedin.png", width: "30em")%>
-        <% end %> |
-
-        <%= link_to "https://twitter.com/dmr4100" do %>
-            <%=image_tag("twitter.png", width: "30em")%>
-        <% end %> |
-
-        <%= link_to "https://students.gschool.it/cohorts/3/class_notes" do %>
-            <%=image_tag("gschool.png", width: "70em")%>
         <% end %>
+
       </div>
       <div class="text-center shifty ">
           <%= link_to_unless_current("Home", root_path) %>
