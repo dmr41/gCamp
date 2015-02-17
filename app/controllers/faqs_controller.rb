@@ -44,7 +44,7 @@ class FaqsController < MarketingController
     query5.slug = "slug5"
 
     query6 = Faq.new
-    query6.question = "Is there anyting else you would like to say about this project?"
+    query6.question = "Is there anything else you would like to say about this project?"
     query6.answer = "Only that it was built in 3 months by me.  Before starting
     gSchool I knew literally nothing about Ruby/Rails/HTML. To be able to build
     this in such a short period of time speaks to the quaility of the gSchool
