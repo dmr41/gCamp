@@ -1,6 +1,5 @@
 require "rails_helper"
 describe "Tasks" do
-
   it "tasks can't have a date in the past" do
     task = Task.create!(description: "hi there", date: Date.today)
     expect(task.errors[:date].present?).to eq(false)
